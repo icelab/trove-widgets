@@ -1,0 +1,1 @@
+console.debug("<%= params[:titles] %>")
