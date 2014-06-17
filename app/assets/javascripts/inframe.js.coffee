@@ -4,12 +4,8 @@ window.TroveWidgets.inFrame =
   initialize: (el) ->
 
     # Call iframe related method
-    @[el.data('type') + '_' + el.data('action')]()
-
-
-  summary_single: () ->
-
-    console.debug('Single widget')
+    method = @[el.data('type') + '_' + el.data('action')]
+    method() if typeof(method) != 'undefined'
 
 
   summary_multiple: () ->
