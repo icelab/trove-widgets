@@ -5,7 +5,11 @@ $(function() {
   if (widgets.length > 0) {
     $(widgets).each(function(index) {
       $(this).attr('data-processed', 'true')
-      $(this).after('<iframe src="widgets/'+$(this).data('type')+'/single.html?titles='+$(this).data('titles')+'" scrolling="no" frameborder="0" style="border:none;width:305px;height:180px;" />')
+
+      var ids = $(this).data('ids');
+      var action = ids.toString().split(',').length > 1 ? 'multiple': 'single';
+      $(this).after('<iframe src="widgets/'+$(this).data('type')+'/'+action+'.html?ids='+ids+'" scrolling="no" frameborder="0" style="border:none;width:305px;height:180px;" />')
+
     });
   }
 });

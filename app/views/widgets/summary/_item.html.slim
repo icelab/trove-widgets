@@ -1,0 +1,11 @@
+.widget__summary-item
+
+  h1.widget__summary-title= link_to title[:name], title[:url], target: :blank
+
+  p.widget__summary-stats Explore #{title[:issuecount]} issues from #{title[:start_date]} to #{title[:end_date]}
+
+  .widget__search
+    form action='http://trove.nla.gov.au/newspaper/result' target='_blank'
+      input type='text' name='q' class='widget__search-field'
+      input type='hidden' name='l-advtitle' value="#{title[:id]}"
+      button type='submit' class='widget__search-button'
