@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   root 'static#index'
-  get 'widgets', to: 'static#widgets'
 
   namespace :widgets do
     get 'summary/single', to: 'summary#single'
