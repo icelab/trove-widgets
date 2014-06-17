@@ -1,0 +1,7 @@
+- for title in @newspapers
+
+  .widget__summary-item
+
+    h1.widget__summary-title= link_to title[:name], title[:url], target: :blank
+
+    p.widget__summary-stats From #{title[:start_date]} to #{title[:end_date]}

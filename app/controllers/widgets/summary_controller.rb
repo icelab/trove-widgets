@@ -11,6 +11,22 @@ class Widgets::SummaryController < ApplicationController
     @titles = titles_hash(params[:ids])
   end
 
+  def state
+    json = parse("newspaper/titles?state=#{params[:state]}")
+    newspapers = json['response']['records']['newspaper']
+    newspapers = newspapers[0...params[:limit].to_i] if params[:limit]
+    @newspapers = []
+    newspapers.each do |newspaper|
+      @newspapers << {
+        id: newspaper['id'],
+        name: newspaper['title'].split('(').first,
+        url: newspaper['troveUrl'],
+        start_date: newspaper['startDate'].to_date.strftime('%Y'),
+        end_date: newspaper['endDate'].to_date.strftime('%Y')
+      }
+    end
+  end
+
 private
 
   def parse(params)

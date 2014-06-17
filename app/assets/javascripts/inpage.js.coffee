@@ -21,8 +21,12 @@ window.TroveWidgets.inPage =
     type = options['type'] = $(el).data('type')
     if type == 'summary'
       ids = $(el).data("ids")
-      options['action'] = (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
-      options['params'] = 'ids=' + ids
+      if ids != undefined
+        options['action'] = (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
+        options['params'] = 'ids=' + ids
+      else
+        options['action'] = 'state'
+        options['params'] = 'state=' + $(el).data('state') + '&limit=' + $(el).data('limit')
     return options
 
   # Render iframe with options
