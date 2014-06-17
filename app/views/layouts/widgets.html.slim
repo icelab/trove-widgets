@@ -4,4 +4,12 @@ html lang='en'
     meta charset='utf-8'
     title Trove #{params[:type]} widget
   body
-    = yield
+
+    .widget
+      .widget__inner
+        .widget__header
+          b Digitised on Trove
+          = link_to 'Trove', 'http://trove.nla.gov.au/', title: 'Digitised on Trove', target: :blank, class: 'widget__header-logo'
+        .widget__body
+          = yield
+
