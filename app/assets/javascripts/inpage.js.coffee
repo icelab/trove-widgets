@@ -19,12 +19,15 @@ window.TroveWidgets.inPage =
 
     options = {}
     type = options['type'] = $(el).data('type')
+    options['width'] = 305
+    options['height'] = 180
     if type == 'summary'
       ids = $(el).data("ids")
       if ids != undefined
         options['action'] = (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
         options['params'] = 'ids=' + ids
       else
+        options['height'] = 400
         options['action'] = 'state'
         options['params'] = 'state=' + $(el).data('state') + '&limit=' + $(el).data('limit')
     return options
@@ -33,4 +36,5 @@ window.TroveWidgets.inPage =
   render: (el, options) ->
 
     src = '/widgets/' + options.type + '/' + options.action + '/?type=' + options.type + '&' + options.params
-    $(el).after("<iframe src=" + src + " scrolling='no' frameborder='0' style='border:none; width:305px; height:180px;' />")
+    template = '<iframe src="'+src+'" scrolling="no" frameborder="0" style="border:none; width:'+options.width+'px; height:'+options.height+'px;" />'
+    $(el).after(template)
