@@ -1,4 +1,5 @@
 window.TroveWidgets.inFrame =
 
-  initialize: ->
-    console.debug('Frame')
+  initialize: (el) ->
+
+    console.debug(el.data())

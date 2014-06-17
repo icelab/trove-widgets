@@ -2,20 +2,20 @@ window.TroveWidgets.inPage =
 
   initialize: ->
 
-    this.process()
+    @.process()
 
   # Process unprocessed script elements
   process: ->
 
     widgets = $("@trove-widget[data-processed!='true']")
     if widgets.length > 0
-      that = this
+      that = @
       $(widgets).each (index) ->
-        $(this).attr "data-processed", "true"
-        that.render(this, that.getOptions(this))
+        $(@).attr "data-processed", "true"
+        that.render(@, that.setOptions(@))
 
-  # Parse data options
-  getOptions: (el) ->
+  # Parse and set data options
+  setOptions: (el) ->
 
     options = {}
     type = options['type'] = $(el).data('type')
@@ -28,5 +28,5 @@ window.TroveWidgets.inPage =
   # Render iframe with options
   render: (el, options) ->
 
-    src = '/widgets/' + options.type + '/' + options.action + '/?' + options.params
+    src = '/widgets/' + options.type + '/' + options.action + '/?type=' + options.type + '&' + options.params
     $(el).after("<iframe src=" + src + " scrolling='no' frameborder='0' style='border:none; width:305px; height:180px;' />")
