@@ -1,8 +1,8 @@
 .widget__summary
 
-  h1.widget__summary-title= link_to 'The Sydney Morning Herald', '#', target: :blank
+  h1.widget__summary-title= link_to @title, @url, target: :blank
 
-  p.widget__summary-stats Explore 9030 issues from 1842 to 1954
+  p.widget__summary-stats Explore #{@issuecount} issues from #{@start_date} to #{@end_date}
 
   .widget__search
     form

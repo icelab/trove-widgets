@@ -9,4 +9,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'role-rails'
 gem 'compass-rails'
+gem 'json'
+gem 'dotenv-rails'
 gem 'spring',        group: :development
