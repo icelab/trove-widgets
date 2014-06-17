@@ -5,7 +5,7 @@ $(function() {
   if (widgets.length > 0) {
     $(widgets).each(function(index) {
       $(this).attr('data-processed', 'true')
-      $(this).after('<iframe src="widgets/'+$(this).data('type')+'.html?titles='+$(this).data('titles')+'" scrolling="no" frameborder="0" style="border:none;width:305px;height:180px;" />')
+      $(this).after('<iframe src="widgets/'+$(this).data('type')+'/single.html?titles='+$(this).data('titles')+'" scrolling="no" frameborder="0" style="border:none;width:305px;height:180px;" />')
     });
   }
 });

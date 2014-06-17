@@ -1,9 +1,9 @@
-class WidgetsController < ApplicationController
+class Widgets::SummaryController < ApplicationController
 
   require 'net/http'
   layout 'widgets'
 
-  def summary
+  def single
     json = parse("newspaper/title/#{params[:titles]}?include=years")
     newspaper = json['newspaper']
     @id = newspaper['id']
