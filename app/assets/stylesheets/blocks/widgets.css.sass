@@ -3,6 +3,17 @@
 html
   background: #FFF
 
+@mixin title($font-size, $font-weight)
+  font-size: $font-size
+  font-weight: $font-weight
+  color: #919191
+  margin-bottom: 17px
+  a
+    color: #919191
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+
 .widget
   padding: 12px 10px
 .widget__inner
@@ -29,25 +40,17 @@ html
   background-image: image-url('/widgets/logo.png')
   background-image: inline-image('/widgets/logo.png')
   text-indent: -777em
-.widget__summary-state
-  overflow-y: scroll
 
 .widget__summary
   height: 92px
   overflow: hidden
   position: relative
 h1.widget__summary-title
-  font-size: 19px
-  font-weight: bold
-  color: #919191
-  margin-bottom: 17px
-  a
-    color: #919191
-    text-decoration: none
-    &:hover
-      text-decoration: underline
+  +title(19px, bold)
 p.widget__summary-stats
   margin-bottom: 15px
+.widget__summary-state
+  overflow-y: scroll
 
 .widget__search
   position: relative

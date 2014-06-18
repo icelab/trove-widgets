@@ -13,8 +13,12 @@ class Widgets::SummaryController < ApplicationController
 
   def state
     json = request_json("newspaper/titles?state=#{params[:state]}")
-    newspapers = json['response']['records']['newspaper']
-    @newspapers = newspapers.inject([]){|memo, newspaper| memo << convert_items(newspaper); memo}
+    @state = params[:state].upcase
+    @issuecount = json['response']['records']['total']
+    @newspapers = json['response']['records']['newspaper'].inject([]){|memo, newspaper| memo << convert_items(newspaper); memo}
+    dates = @newspapers.map{|item| item[:start_date]}
+    @start_date = dates.min
+    @end_date = dates.max
   end
 
 private
