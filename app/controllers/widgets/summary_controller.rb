@@ -14,7 +14,6 @@ class Widgets::SummaryController < ApplicationController
   def state
     json = parse("newspaper/titles?state=#{params[:state]}")
     newspapers = json['response']['records']['newspaper']
-    newspapers = newspapers[0...params[:limit].to_i] if params[:limit]
     @newspapers = []
     newspapers.each do |newspaper|
       @newspapers << {

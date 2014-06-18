@@ -29,7 +29,7 @@ window.TroveWidgets.inPage =
       else
         options['height'] = 400
         options['action'] = 'state'
-        options['params'] = 'state=' + $(el).data('state') + '&limit=' + $(el).data('limit') + '&height=' + options.height
+        options['params'] = 'state=' + $(el).data('state') + '&height=' + options.height
     return options
 
   # Render iframe with options
