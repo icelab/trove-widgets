@@ -4,50 +4,44 @@ class Widgets::SummaryController < ApplicationController
   layout 'widgets'
 
   def single
-    @newspapers = newspapers_hash(params[:ids])
+    @newspapers = get_items(params[:ids])
   end
 
   def multiple
-    @newspapers = newspapers_hash(params[:ids])
+    @newspapers = get_items(params[:ids])
   end
 
   def state
-    json = parse("newspaper/titles?state=#{params[:state]}")
+    json = request_json("newspaper/titles?state=#{params[:state]}")
     newspapers = json['response']['records']['newspaper']
-    @newspapers = []
-    newspapers.each do |newspaper|
-      @newspapers << {
-        id: newspaper['id'],
-        title: newspaper['title'].split('(').first.strip,
-        url: newspaper['troveUrl'],
-        start_date: newspaper['startDate'].to_date.strftime('%Y'),
-        end_date: newspaper['endDate'].to_date.strftime('%Y')
-      }
-    end
+    @newspapers = newspapers.inject([]){|memo, newspaper| memo << convert_items(newspaper); memo}
   end
 
 private
 
-  def parse(params)
+  def request_json(params)
     response = Net::HTTP.get_response(URI.parse("#{ENV['TROVE_API_URL']}/#{params}&key=#{ENV['TROVE_API_KEY']}&encoding=json"))
     JSON.parse(response.body)
   end
 
-  def newspapers_hash(ids)
-    titles = []
+  def get_items(ids)
+    items = []
     ids.split(',').each do |title|
-      json = parse("newspaper/title/#{title}?include=years")
-      newspaper = json['newspaper']
-      titles << {
-        id: newspaper['id'],
-        title: newspaper['title'].split('(').first.strip,
-        url: newspaper['troveUrl'],
-        start_date: newspaper['startDate'].to_date.strftime('%Y'),
-        end_date: newspaper['endDate'].to_date.strftime('%Y'),
-        issuecount: newspaper['year'].inject(0){|memo, el| memo + el['issuecount'].to_i}
-      }
+      json = request_json("newspaper/title/#{title}?include=years")
+      items << convert_items(json['newspaper'])
     end
-    titles
+    items
+  end
+
+  def convert_items(json)
+    response = {}
+    response[:id] = json['id']
+    response[:title] = json['title'].split('(').first.strip
+    response[:url] = json['troveUrl']
+    response[:start_date] = json['startDate'].to_date.strftime('%Y')
+    response[:end_date] = json['endDate'].to_date.strftime('%Y')
+    response[:issuecount] = json['year'].inject(0){|memo, el| memo + el['issuecount'].to_i} if json['year']
+    response
   end
 
 end
