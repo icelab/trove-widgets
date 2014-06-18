@@ -1,9 +1,9 @@
 .widget__summary-state style="height:#{params[:height].to_i-80}px;"
 
-  - for title in @newspapers
+  - for newspaper in @newspapers
 
     .widget__summary-item
 
-      h1.widget__summary-title= link_to title[:name], title[:url], target: :blank
+      h1.widget__summary-title= link_to newspaper[:title], newspaper[:url], target: :blank
 
-      p.widget__summary-stats From #{title[:start_date]} to #{title[:end_date]}
+      p.widget__summary-stats From #{newspaper[:start_date]} to #{newspaper[:end_date]}

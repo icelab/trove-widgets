@@ -4,11 +4,11 @@ class Widgets::SummaryController < ApplicationController
   layout 'widgets'
 
   def single
-    @titles = titles_hash(params[:ids])
+    @newspapers = newspapers_hash(params[:ids])
   end
 
   def multiple
-    @titles = titles_hash(params[:ids])
+    @newspapers = newspapers_hash(params[:ids])
   end
 
   def state
@@ -19,7 +19,7 @@ class Widgets::SummaryController < ApplicationController
     newspapers.each do |newspaper|
       @newspapers << {
         id: newspaper['id'],
-        name: newspaper['title'].split('(').first,
+        title: newspaper['title'].split('(').first.strip,
         url: newspaper['troveUrl'],
         start_date: newspaper['startDate'].to_date.strftime('%Y'),
         end_date: newspaper['endDate'].to_date.strftime('%Y')
@@ -34,14 +34,14 @@ private
     JSON.parse(response.body)
   end
 
-  def titles_hash(ids)
+  def newspapers_hash(ids)
     titles = []
     ids.split(',').each do |title|
       json = parse("newspaper/title/#{title}?include=years")
       newspaper = json['newspaper']
       titles << {
         id: newspaper['id'],
-        name: newspaper['title'].split('(').first,
+        title: newspaper['title'].split('(').first.strip,
         url: newspaper['troveUrl'],
         start_date: newspaper['startDate'].to_date.strftime('%Y'),
         end_date: newspaper['endDate'].to_date.strftime('%Y'),
