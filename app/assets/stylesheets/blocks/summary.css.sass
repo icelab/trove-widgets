@@ -1,0 +1,32 @@
+$b: 'summary'
+
+.#{$b}
+  height: 92px
+  overflow: hidden
+  position: relative
+
+h1.#{$b}__title
+  +title(19px, bold)
+p.#{$b}__stats
+  margin-bottom: 15px
+
+.#{$b}__search
+  position: relative
+.#{$b}__search-field
+  display: block
+  width: 210px
+  padding: 6px
+  border: 1px solid #a9a9a9
+  outline: none
+  +border-radius(5px)
+.#{$b}__search-button
+  display: block
+  width: 22px
+  height: 22px
+  position: absolute
+  top: 3px
+  left: 233px
+  border: none
+  background-image: image-url('/widgets/search.png')
+  background-image: inline-image('/widgets/search.png')
+  cursor: pointer

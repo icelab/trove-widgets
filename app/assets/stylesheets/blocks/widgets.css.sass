@@ -1,34 +1,19 @@
-+global-reset
+$b: 'widget'
 
-html
-  background: #FFF
-
-@mixin title($font-size, $font-weight)
-  font-size: $font-size
-  font-weight: $font-weight
-  color: #919191
-  margin-bottom: 17px
-  a
-    color: #919191
-    text-decoration: none
-    &:hover
-      text-decoration: underline
-
-.widget
+.#{$b}
   padding: 12px 10px
-.widget__inner
+
+.#{$b}__inner
   padding: 11px 10px
   border: #a9a9a9 1px solid
-  color: #a9a9a9
-  font-family: Arial
-  font-size: 14px
 
-.widget__header
+.#{$b}__header
   position: relative
   margin-bottom: 23px
   font-size: 15px
   letter-spacing: 1px
-.widget__header-logo
+
+.#{$b}__header-logo
   width: 81px
   height: 23px
   position: absolute
@@ -39,36 +24,4 @@ html
   background-position: 0 0
   background-image: image-url('/widgets/logo.png')
   background-image: inline-image('/widgets/logo.png')
-  text-indent: -777em
-
-.widget__summary
-  height: 92px
-  overflow: hidden
-  position: relative
-h1.widget__summary-title
-  +title(19px, bold)
-p.widget__summary-stats
-  margin-bottom: 15px
-.widget__summary-state
-  overflow-y: scroll
-
-.widget__search
-  position: relative
-.widget__search-field
-  display: block
-  width: 210px
-  padding: 6px
-  border: 1px solid #a9a9a9
-  outline: none
-  +border-radius(5px)
-.widget__search-button
-  display: block
-  width: 22px
-  height: 22px
-  position: absolute
-  top: 3px
-  left: 233px
-  border: none
-  background-image: image-url('/widgets/search.png')
-  background-image: inline-image('/widgets/search.png')
-  cursor: pointer
+  +indent

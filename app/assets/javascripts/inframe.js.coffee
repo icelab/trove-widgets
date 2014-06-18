@@ -11,7 +11,7 @@ window.TroveWidgets.inFrame =
   summary_multiple: () ->
 
     timerId = setInterval (->
-      items = $('@widget__summary-item')
+      items = $('@summary__item')
       current = items.filter("[data-type='active']")
       next = (if current.next().length is 0 then items.first() else current.next())
       current.attr('data-type', 'normal')

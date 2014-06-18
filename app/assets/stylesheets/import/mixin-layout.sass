@@ -1,0 +1,18 @@
+@mixin automargin
+  margin: 0 auto
+
+@mixin wrapper
+  width: $width__layout
+  +automargin
+
+@mixin absolute($t, $l)
+  position: absolute
+  top: $t
+  left: $l
+
+@mixin float100
+  float: left
+  width: 100%
+
+@mixin indent
+  text-indent: -777em

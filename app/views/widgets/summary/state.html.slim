@@ -1,10 +1,10 @@
-.widget__summary-state style="height:#{params[:height].to_i-80}px;"
+.summary-state style="height:#{params[:height].to_i-80}px;"
 
-  h1.widget__summary-title Newspaper information for #{@state} state
-  p.widget__summary-stats Explore #{@issuecount} issues from #{@start_date} to #{@end_date}
+  h1.summary-state__title Newspaper information for #{@state} state
+  p.summary-state__stats Explore #{@issuecount} issues from #{@start_date} to #{@end_date}
 
-  ul.widget__summary-list
+  ul.summary-state__list
     - for newspaper in @newspapers
-      li
-        strong= link_to newspaper[:title], newspaper[:url], target: :blank
-        p From #{newspaper[:start_date]} to #{newspaper[:end_date]}
+      li.summary-state__list-item
+        strong.summary-state__list-title= link_to newspaper[:title], newspaper[:url], target: :blank
+        p.summary-state__list-stats From #{newspaper[:start_date]} to #{newspaper[:end_date]}
