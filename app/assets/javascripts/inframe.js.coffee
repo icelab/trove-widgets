@@ -21,3 +21,7 @@ window.TroveWidgets.inFrame =
 
     $('input').focus ->
       clearInterval(timerId)
+
+
+  summary_state: () ->
+    $('@search__field').fastLiveFilter('@summary-state__list')

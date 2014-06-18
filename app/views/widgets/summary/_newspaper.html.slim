@@ -4,8 +4,8 @@
 
   p.summary__stats Explore #{newspaper[:issuecount]} issues from #{newspaper[:start_date]} to #{newspaper[:end_date]}
 
-  .summary__search
+  .search.search--state
     form action='http://trove.nla.gov.au/newspaper/result' target='_blank'
-      input type='text' name='q' placeholder='Search in newspaper' class='summary__search-field'
+      input type='text' name='q' placeholder='Search in newspaper' class='search__field'
       input type='hidden' name='l-advtitle' value="#{newspaper[:id]}"
-      button type='submit' class='summary__search-button'
+      button type='submit' class='search__button'

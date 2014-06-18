@@ -1,0 +1,28 @@
+$b: 'search'
+
+.#{$b}
+  position: relative
+
+.#{$b}__field
+  display: block
+  width: 210px
+  padding: 6px
+  border: 1px solid $color__dark
+  outline: none
+  +border-radius(5px)
+.#{$b}__button
+  display: block
+  width: 22px
+  height: 22px
+  position: absolute
+  top: 3px
+  left: 233px
+  border: none
+  background-image: image-url('/widgets/search.png')
+  background-image: inline-image('/widgets/search.png')
+  cursor: pointer
+
+.#{$b}--state
+  margin-bottom: 17px
+  .#{$b}__button
+    cursor: normal

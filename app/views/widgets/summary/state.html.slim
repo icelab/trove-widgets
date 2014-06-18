@@ -3,7 +3,11 @@
   h1.summary-state__title Newspaper information for #{@state} state
   p.summary-state__stats Explore #{@issuecount} issues from #{@start_date} to #{@end_date}
 
-  ul.summary-state__list
+  .search.search--state
+    input type='text' name='q' placeholder='Filter newspapers by title' class='search__field' role='search__field'
+    button type='submit' class='search__button'
+
+  ul.summary-state__list role='summary-state__list'
     - for newspaper in @newspapers
       li.summary-state__list-item
         strong.summary-state__list-title= link_to newspaper[:title], newspaper[:url], target: :blank
