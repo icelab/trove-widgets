@@ -4,7 +4,7 @@ $b: 'summary-state'
   overflow-y: scroll
 
 h1.#{$b}__title
-  +title(19px, bold)
+  +title($font-size--big, bold)
   margin-bottom: 5px
   line-height: 23px
 p.#{$b}__stats
@@ -13,9 +13,9 @@ p.#{$b}__stats
 li.#{$b}__list-item
   margin-bottom: 10px
 strong.#{$b}__list-title
-  +title(17px, normal)
+  +title($font-size--middle, normal)
   display: block
   margin-bottom: 3px
   line-height: 21px
 p.#{$b}__list-stats
-  font-size: 13px
+  font-size: $font-size--less

@@ -6,7 +6,7 @@ $b: 'summary'
   position: relative
 
 h1.#{$b}__title
-  +title(19px, bold)
+  +title($font-size--big, bold)
 p.#{$b}__stats
   margin-bottom: 15px
 
@@ -16,7 +16,7 @@ p.#{$b}__stats
   display: block
   width: 210px
   padding: 6px
-  border: 1px solid #a9a9a9
+  border: 1px solid $color__dark
   outline: none
   +border-radius(5px)
 .#{$b}__search-button
