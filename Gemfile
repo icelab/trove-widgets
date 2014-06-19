@@ -1,3 +1,4 @@
+ruby '2.0.0'
 source 'https://rubygems.org'
 
 
@@ -11,4 +12,7 @@ gem 'role-rails'
 gem 'compass-rails'
 gem 'json'
 gem 'dotenv-rails'
+gem 'unicorn'
+
 gem 'spring',        group: :development
+gem 'rails_12factor', group: :production
