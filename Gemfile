@@ -15,4 +15,8 @@ gem 'dotenv-rails'
 gem 'unicorn'
 
 gem 'spring',        group: :development
-gem 'rails_12factor', group: :production
+
+group :production do
+  gem 'rails_12factor'
+  gem 'non-stupid-digest-assets'
+end
