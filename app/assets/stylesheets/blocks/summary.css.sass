@@ -1,14 +1,19 @@
 $b: 'summary'
 
 .#{$b}
-  height: 92px
+  height: 118px
   overflow: hidden
   position: relative
 
 h1.#{$b}__title
   +title($font-size--big, bold)
+p.#{$b}__years
+  margin-bottom: 10px
 p.#{$b}__stats
-  margin-bottom: 15px
+  margin-bottom: 10px
+  line-height: 17px
+  font-size: $font-size--less
+  color: $color__light
 
 .#{$b}__search
   position: relative

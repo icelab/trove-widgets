@@ -2,10 +2,12 @@
 
   h1.summary__title= link_to newspaper.title, newspaper.url, target: :blank
 
-  p.summary__stats Explore #{human_counts('issue', newspaper.issuecount)}, #{human_counts('article', newspaper.articles_count)}, #{human_counts('comment', newspaper.comments_count)}, #{human_counts('tag', newspaper.tags_count)} from #{newspaper.start_date} to #{newspaper.end_date}
+  p.summary__years from #{newspaper.start_date} to #{newspaper.end_date}
 
-  .search
+  .search.search--summary
     form action='http://trove.nla.gov.au/newspaper/result' target='_blank'
       input type='text' name='q' placeholder='Search in newspaper' class='search__field'
       input type='hidden' name='l-advtitle' value="#{newspaper.id}"
       button type='submit' class='search__button'
+
+  p.summary__stats #{human_counts('issue', newspaper.issuecount)}, #{human_counts('article', newspaper.articles_count)}, #{human_counts('comment', newspaper.comments_count)}, #{human_counts('tag', newspaper.tags_count)}
