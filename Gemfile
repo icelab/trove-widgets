@@ -13,6 +13,7 @@ gem 'compass-rails'
 gem 'json'
 gem 'dotenv-rails'
 gem 'unicorn'
+gem 'trove', git: 'https://github.com/icelab/trove'
 
 gem 'spring',        group: :development
 
