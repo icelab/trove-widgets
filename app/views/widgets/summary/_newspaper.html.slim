@@ -2,7 +2,7 @@
 
   h1.summary__title= link_to newspaper.title, newspaper.url, target: :blank
 
-  p.summary__stats Explore #{newspaper.issuecount} issues from #{newspaper.start_date} to #{newspaper.end_date}
+  p.summary__stats Explore #{pluralize(newspaper.issuecount, 'issue')} from #{newspaper.start_date} to #{newspaper.end_date}
 
   .search
     form action='http://trove.nla.gov.au/newspaper/result' target='_blank'
