@@ -1,11 +1,11 @@
 .summary__item role='summary__item' data-type="#{newspaper == newspapers.first ? 'active' : 'normal'}"
 
-  h1.summary__title= link_to newspaper[:title], newspaper[:url], target: :blank
+  h1.summary__title= link_to newspaper.title, newspaper.url, target: :blank
 
-  p.summary__stats Explore #{newspaper[:issuecount]} issues from #{newspaper[:start_date]} to #{newspaper[:end_date]}
+  p.summary__stats Explore #{newspaper.issuecount} issues from #{newspaper.start_date} to #{newspaper.end_date}
 
   .search
     form action='http://trove.nla.gov.au/newspaper/result' target='_blank'
       input type='text' name='q' placeholder='Search in newspaper' class='search__field'
-      input type='hidden' name='l-advtitle' value="#{newspaper[:id]}"
+      input type='hidden' name='l-advtitle' value="#{newspaper.id}"
       button type='submit' class='search__button'
