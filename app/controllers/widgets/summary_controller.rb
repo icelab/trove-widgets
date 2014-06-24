@@ -3,15 +3,15 @@ class Widgets::SummaryController < ApplicationController
   layout 'widgets'
 
   def single
-    @newspapers = TroveApi.new.single_include_years(params[:ids])
+    @newspapers = Rails.cache.fetch(['summary_single', params], expires: 1.day) {TroveApi.new.single_include_years(params[:ids])}
   end
 
   def multiple
-    @newspapers = TroveApi.new.multiple_include_years(params[:ids])
+    @newspapers = Rails.cache.fetch(['summary_multiple', params], expires: 1.day) {TroveApi.new.multiple_include_years(params[:ids])}
   end
 
   def state
-    response = TroveApi.new.state(params[:state])
+    response = Rails.cache.fetch(['summary_state', params], expires: 1.day) {TroveApi.new.state(params[:state])}
     @state = params[:state].upcase
     @newspapers = response[:titles]
     @issuecount = response[:total]
