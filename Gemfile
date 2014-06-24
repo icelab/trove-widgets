@@ -16,7 +16,10 @@ gem 'unicorn'
 gem 'trove', git: 'https://github.com/icelab/trove'
 gem 'dalli'
 
-gem 'spring',        group: :development
+group :davelopment do
+  gem 'spring'
+  gem 'foreman'
+end
 
 group :production do
   gem 'rails_12factor'
