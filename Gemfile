@@ -14,6 +14,7 @@ gem 'json'
 gem 'dotenv-rails'
 gem 'unicorn'
 gem 'trove', git: 'https://github.com/icelab/trove'
+gem 'dalli'
 
 gem 'spring',        group: :development
 
