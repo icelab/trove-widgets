@@ -32,6 +32,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  # Default cache store
   config.cache_store = :dalli_store, {expires_in: 1.day, compress: true}
 
 end

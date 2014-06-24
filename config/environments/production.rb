@@ -78,4 +78,8 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Default cache store
+  config.cache_store = :dalli_store, {expires_in: 1.day, compress: true}
+
 end
