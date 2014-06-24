@@ -9,6 +9,7 @@ class TroveApi
     response = @client.title_include_years(id)
     response = data_comb(response)
     response = combine_issues(response)
+    response = add_data_counts(response)
     titles << response
   end
 
@@ -18,6 +19,7 @@ class TroveApi
       response = @client.title_include_years(id)
       response = data_comb(response)
       response = combine_issues(response)
+      response = add_data_counts(response)
       titles << response
     end
     titles
@@ -40,6 +42,28 @@ private
 
   def combine_issues(data)
     data[:issuecount] = data.year.inject(0){|memo, el| memo + el['issuecount'].to_i} if data.year
+    data
+  end
+
+  def add_articles_count(data)
+    data[:articles_count] = @client.title_articles_count(data.id)
+    data
+  end
+
+  def add_tags_count(data)
+    data[:tags_count] = @client.title_tags_count(data.id)
+    data
+  end
+
+  def add_comments_count(data)
+    data[:comments_count] = @client.title_comments_count(data.id)
+    data
+  end
+
+  def add_data_counts(data)
+    data = add_articles_count(data)
+    data = add_tags_count(data)
+    data = add_comments_count(data)
     data
   end
 
