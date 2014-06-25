@@ -1,14 +1,14 @@
-.summary-state style="height:#{params[:height].to_i-74}px;"
+.navigator style="height:#{params[:height].to_i-74}px;"
 
-  h1.summary-state__title #{@state} state newspapers
-  p.summary-state__stats #{human_counts('title', @issuecount)} from #{@start_date} to #{@end_date}
+  h1.navigator__title #{@state} state newspapers
+  p.navigator__stats #{human_counts('title', @issuecount)} from #{@start_date} to #{@end_date}
 
   .search.search--state
     input type='text' name='q' placeholder='Filter newspapers by title' class='search__field' role='search__field'
     button type='submit' class='search__button'
 
-  ul.summary-state__list role='summary-state__list'
+  ul.navigator__list role='navigator__list'
     - for newspaper in @newspapers
-      li.summary-state__list-item
-        strong.summary-state__list-title= link_to newspaper[:title], newspaper[:url], target: :blank
-        p.summary-state__list-stats From #{newspaper[:start_date]} to #{newspaper[:end_date]}
+      li.navigator__list-item
+        strong.navigator__list-title= link_to newspaper[:title], newspaper[:url], target: :blank
+        p.navigator__list-stats From #{newspaper[:start_date]} to #{newspaper[:end_date]}
