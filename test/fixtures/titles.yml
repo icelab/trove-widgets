@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trove_id: 1
+  state_abbrev: MyString
+  name: MyString
+  start_date: 2014-06-26
+  end_date: 2014-06-26
+  trove_url: MyString
+  issue_count: 1
+  article_count: 1
+  comment_count: 1
+  tag_count: 1
+
+two:
+  trove_id: 1
+  state_abbrev: MyString
+  name: MyString
+  start_date: 2014-06-26
+  end_date: 2014-06-26
+  trove_url: MyString
+  issue_count: 1
+  article_count: 1
+  comment_count: 1
+  tag_count: 1

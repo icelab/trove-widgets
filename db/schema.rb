@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625205006) do
+ActiveRecord::Schema.define(version: 20140625212106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -298,6 +298,28 @@ ActiveRecord::Schema.define(version: 20140625205006) do
 
   add_index "teams", ["person_id"], name: "index_teams_on_person_id", using: :btree
   add_index "teams", ["slug"], name: "index_teams_on_slug", unique: true, using: :btree
+
+  create_table "titles", id: false, force: true do |t|
+    t.integer  "trove_id"
+    t.string   "state_abbrev"
+    t.string   "name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "trove_url"
+    t.integer  "issue_count"
+    t.integer  "article_count"
+    t.integer  "comment_count"
+    t.integer  "tag_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "titles", ["article_count"], name: "index_titles_on_article_count", using: :btree
+  add_index "titles", ["comment_count"], name: "index_titles_on_comment_count", using: :btree
+  add_index "titles", ["issue_count"], name: "index_titles_on_issue_count", using: :btree
+  add_index "titles", ["state_abbrev"], name: "index_titles_on_state_abbrev", using: :btree
+  add_index "titles", ["tag_count"], name: "index_titles_on_tag_count", using: :btree
+  add_index "titles", ["trove_id"], name: "index_titles_on_trove_id", using: :btree
 
   create_table "works", force: true do |t|
     t.integer  "person_id"
