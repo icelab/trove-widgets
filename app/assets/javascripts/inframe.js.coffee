@@ -16,7 +16,7 @@ window.TroveWidgets.inFrame =
       next = (if current.next().length is 0 then items.first() else current.next())
       current.attr('data-type', 'normal')
       next.attr('data-type', 'active')
-      items.first().animate({'margin-top': -(current.index())*134}, 500, 'linear')
+      items.first().animate({'margin-top': -(current.index())*current.height()}, 500, 'linear')
     ), 5000
 
     $('input').focus ->
