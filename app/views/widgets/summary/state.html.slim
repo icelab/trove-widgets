@@ -1,6 +1,6 @@
-.summary-state style="height:#{params[:height].to_i-74}px;"
+.summary style="height:#{params[:height].to_i-74}px;"
 
-  h1.summary-state__title #{@state} state newspapers
-  p.summary-state__stats #{human_counts('title', @issuecount)} from #{@start_date} to #{@end_date}
+  h1.summary__title #{@state} state newspapers
+  p.summary__stats.summary__stats--state #{human_counts('title', @issuecount)} from #{@start_date} to #{@end_date}
 
-  .search= render 'form', placeholder: 'Search across state titles', hidden_name: 'l-state', hidden_value: @state
+  .search.search= render 'form', placeholder: 'Search across state titles', hidden_name: 'l-state', hidden_value: @state
