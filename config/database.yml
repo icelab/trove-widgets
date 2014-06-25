@@ -1,0 +1,15 @@
+development: &default
+  adapter: postgresql
+  encoding: unicode
+  database: trove_widgets_development
+  host: localhost
+  port: <%= ENV["BOXEN_POSTGRESQL_PORT"] %>
+
+test:
+  <<: *default
+  database: trove_widgets_test
+  min_messages: warning
+
+production:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
