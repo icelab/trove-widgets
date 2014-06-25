@@ -1,7 +1,7 @@
-.summary-state style="height:#{params[:height].to_i-80}px;"
+.summary-state style="height:#{params[:height].to_i-74}px;"
 
   h1.summary-state__title Newspaper information for #{@state} state
-  p.summary-state__stats Explore #{pluralize(@issuecount, 'issue')} issues from #{@start_date} to #{@end_date}
+  p.summary-state__stats Explore #{pluralize(@issuecount, 'issue')} from #{@start_date} to #{@end_date}
 
   .search.search--state
     input type='text' name='q' placeholder='Filter newspapers by title' class='search__field' role='search__field'
