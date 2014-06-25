@@ -242,7 +242,7 @@ ActiveRecord::Schema.define(version: 20140625212106) do
 
   create_table "states", id: false, force: true do |t|
     t.string "name"
-    t.string "abbrev"
+    t.string "abbrev", null: false
   end
 
   add_index "states", ["abbrev"], name: "index_states_on_abbrev", using: :btree
@@ -306,10 +306,10 @@ ActiveRecord::Schema.define(version: 20140625212106) do
     t.date     "start_date"
     t.date     "end_date"
     t.string   "trove_url"
-    t.integer  "issue_count"
-    t.integer  "article_count"
-    t.integer  "comment_count"
-    t.integer  "tag_count"
+    t.integer  "issue_count",   default: 0
+    t.integer  "article_count", default: 0
+    t.integer  "comment_count", default: 0
+    t.integer  "tag_count",     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

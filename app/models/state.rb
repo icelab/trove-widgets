@@ -3,6 +3,12 @@ class State < ActiveRecord::Base
   self.primary_key = :abbrev
   has_many :titles, foreign_key: :state_abbrev, class_name: Title
 
+  def self.import_all_titles
+    State.all.each do |state|
+      state.import_titles
+    end
+  end
+
   def import_titles
     # Get Trove API titles count
     trove_api_titles = Trove::Client.new(key: ENV['TROVE_API_KEY']).titles_by_state(self.abbrev)
