@@ -19,4 +19,9 @@ class Widgets::SummaryController < ApplicationController
     @end_date = @newspapers.map{|item| item[:end_date]}.max
   end
 
+  def statesearch
+    @newspapers = set_cache(['summary_statesearch', params]) {TroveApi.new.multiple_include_years(params[:ids])}
+    @state = params[:state].upcase
+  end
+
 end

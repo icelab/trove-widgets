@@ -10,6 +10,20 @@ window.TroveWidgets.inFrame =
 
   summary_multiple: () ->
 
+    TroveWidgets.inFrame.reshuffle();
+
+
+  summary_statesearch: () ->
+
+    TroveWidgets.inFrame.reshuffle();
+
+
+  navigator_title: () ->
+    $('@search__field').fastLiveFilter('@summary-state__list')
+
+
+  reshuffle: () ->
+
     timerId = setInterval (->
       items = $('@summary__item')
       current = items.filter("[data-type='active']")
@@ -21,7 +35,3 @@ window.TroveWidgets.inFrame =
 
     $('input').focus ->
       clearInterval(timerId)
-
-
-  navigator_title: () ->
-    $('@search__field').fastLiveFilter('@summary-state__list')

@@ -1,0 +1,7 @@
+.summary.summary--statesearch
+
+  - for newspaper in @newspapers
+
+    = render 'newspaper', newspaper: newspaper, newspapers: @newspapers, modifier: 'statesearch'
+
+.search= render 'form', placeholder: 'Search across state titles', hidden_name: 'l-state', hidden_value: @state

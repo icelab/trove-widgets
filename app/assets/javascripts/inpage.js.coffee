@@ -28,13 +28,16 @@ window.TroveWidgets.inPage =
 
       ids = $(el).data('ids')
       state = $(el).data('state')
-      if ids != undefined
+      if ids != undefined && state == undefined
         options['action'] = (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
         options['params'] = 'ids=' + ids
-      else if state != undefined
+      else if state != undefined && ids == undefined
         options['height'] = 164
         options['action'] = 'state'
         options['params'] = 'state=' + state
+      else if ids != undefined && state != undefined
+        options['action'] = 'statesearch'
+        options['params'] = 'ids=' + ids + '&state=' + state
 
     else if type == 'navigator'
 
