@@ -41,7 +41,7 @@ private
   end
 
   def combine_issues(data)
-    data[:issuecount] = data.year.inject(0){|memo, el| memo + el['issuecount'].to_i} if data.year
+    data[:issuecount] = data.year.inject(0){|memo, el| memo + el.issuecount.to_i} if data.year
     data
   end
 
