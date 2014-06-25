@@ -19,13 +19,13 @@ window.TroveWidgets.inPage =
 
     options = {}
     type = options['type'] = $(el).data('type')
-    options['width'] = 305
-    options['height'] = 200
+    options['width'] = 300
+    options['height'] = 180
     if type == 'summary'
       ids = $(el).data("ids")
       if ids != undefined
         options['action'] = (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
-        options['params'] = 'ids=' + ids
+        options['params'] = 'ids=' + ids + '&height=' + options.height
       else
         options['height'] = 400
         options['action'] = 'state'
