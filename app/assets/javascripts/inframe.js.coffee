@@ -23,5 +23,5 @@ window.TroveWidgets.inFrame =
       clearInterval(timerId)
 
 
-  summary_state: () ->
+  navigator_title: () ->
     $('@search__field').fastLiveFilter('@summary-state__list')

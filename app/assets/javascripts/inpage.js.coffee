@@ -26,9 +26,9 @@ window.TroveWidgets.inPage =
       if ids != undefined
         options['action'] = (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
         options['params'] = 'ids=' + ids + '&height=' + options.height
-      else
+    else if type == 'navigator'
         options['height'] = 400
-        options['action'] = 'state'
+        options['action'] = 'title'
         options['params'] = 'state=' + $(el).data('state') + '&height=' + options.height
     return options
 
