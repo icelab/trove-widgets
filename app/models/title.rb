@@ -3,8 +3,9 @@ class Title < ActiveRecord::Base
   self.primary_key = :trove_id
   belongs_to :state, class_name: State
 
-  def self.import_stats
+  def self.sync_counters
     all.each do |title|
+      p title.name
       @client = Trove::Client.new(key: ENV['TROVE_API_KEY'])
       issues = @client.title_include_years(title.trove_id).year.inject(0){|memo, el| memo + el.issuecount.to_i}
       articles = @client.title_articles_count(title.trove_id)
