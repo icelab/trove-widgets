@@ -4,4 +4,4 @@
 
     = render 'newspaper', newspaper: newspaper, newspapers: @newspapers, modifier: 'statesearch'
 
-.search= render 'form', placeholder: 'Search across state titles', hidden_name: 'l-state', hidden_value: @state
+.search= render 'form', placeholder: "Search across #{@state} titles", hidden_name: 'l-state', hidden_value: @state

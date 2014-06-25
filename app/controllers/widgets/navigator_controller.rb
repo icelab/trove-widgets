@@ -4,7 +4,7 @@ class Widgets::NavigatorController < ApplicationController
 
   def title
     response = set_cache(['navigator_title', params]) {TroveApi.new.state(params[:state])}
-    @state = params[:state].upcase
+    @state = State.find(params[:state]).name
     @newspapers = response[:titles]
     @issuecount = response[:total]
     @start_date = @newspapers.map{|item| item.start_date}.min

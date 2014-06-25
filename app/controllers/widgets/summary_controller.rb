@@ -12,7 +12,7 @@ class Widgets::SummaryController < ApplicationController
 
   def state
     response = set_cache(['summary_state', params]) {TroveApi.new.state(params[:state])}
-    @state = params[:state].upcase
+    @state = State.find(params[:state]).name
     @newspapers = response[:titles]
     @issuecount = response[:total]
     @start_date = @newspapers.map{|item| item[:start_date]}.min
@@ -21,7 +21,7 @@ class Widgets::SummaryController < ApplicationController
 
   def statesearch
     @newspapers = set_cache(['summary_statesearch', params]) {TroveApi.new.multiple_include_years(params[:ids])}
-    @state = params[:state].upcase
+    @state = State.find(params[:state]).name
   end
 
 end
