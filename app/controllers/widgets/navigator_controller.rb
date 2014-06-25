@@ -7,9 +7,8 @@ class Widgets::NavigatorController < ApplicationController
     @state = params[:state].upcase
     @newspapers = response[:titles]
     @issuecount = response[:total]
-    dates = @newspapers.map{|item| item[:start_date]}
-    @start_date = dates.min
-    @end_date = dates.max
+    @start_date = @newspapers.map{|item| item.start_date}.min
+    @end_date = @newspapers.map{|item| item.end_date}.max
   end
 
 end

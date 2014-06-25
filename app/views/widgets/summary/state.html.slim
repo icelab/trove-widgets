@@ -1,0 +1,10 @@
+.summary-state style="height:#{params[:height].to_i-74}px;"
+
+  h1.summary-state__title #{@state} state newspapers
+  p.summary-state__stats #{human_counts('title', @issuecount)} from #{@start_date} to #{@end_date}
+
+  .search
+    form action='http://trove.nla.gov.au/newspaper/result' target='_blank'
+      input type='text' name='q' placeholder='Search across state titles' class='search__field' role='search__field'
+      input type='hidden' name='l-state' value="#{@state}"
+      button type='submit' class='search__button'

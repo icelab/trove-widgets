@@ -4,6 +4,7 @@ window.TroveWidgets.inPage =
 
     @.process()
 
+
   # Process unprocessed script elements
   process: ->
 
@@ -14,6 +15,7 @@ window.TroveWidgets.inPage =
         $(@).attr "data-processed", "true"
         that.render(@, that.setOptions(@))
 
+
   # Parse and set data options
   setOptions: (el) ->
 
@@ -21,16 +23,28 @@ window.TroveWidgets.inPage =
     type = options['type'] = $(el).data('type')
     options['width'] = 300
     options['height'] = 180
+
     if type == 'summary'
-      ids = $(el).data("ids")
+
+      ids = $(el).data('ids')
+      state = $(el).data('state')
       if ids != undefined
         options['action'] = (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
-        options['params'] = 'ids=' + ids + '&height=' + options.height
+        options['params'] = 'ids=' + ids
+      else if state != undefined
+        options['height'] = 164
+        options['action'] = 'state'
+        options['params'] = 'state=' + state
+
     else if type == 'navigator'
+
         options['height'] = 400
         options['action'] = 'title'
-        options['params'] = 'state=' + $(el).data('state') + '&height=' + options.height
+        options['params'] = 'state=' + $(el).data('state')
+
+    options['params'] = options.params + '&height=' + options.height
     return options
+
 
   # Render iframe with options
   render: (el, options) ->

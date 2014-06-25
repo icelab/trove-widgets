@@ -35,8 +35,8 @@ private
   def data_comb(data)
     data[:title] = data.title.split('(').first.strip
     data[:url] = data.troveUrl
-    data[:start_date] = data.startDate.to_date.strftime('%Y')
-    data[:end_date] = data.endDate.to_date.strftime('%Y')
+    data[:start_date] = data.startDate ? data.startDate.to_date.strftime('%Y') : '0'
+    data[:end_date] = data.endDate ? data.endDate.to_date.strftime('%Y') : '0'
     data
   end
 
