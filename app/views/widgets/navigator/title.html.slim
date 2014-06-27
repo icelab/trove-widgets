@@ -9,6 +9,6 @@
 
   ul.navigator__list role='navigator__list'
     - for newspaper in @newspapers
-      li.navigator__list-item
-        strong.navigator__list-title= link_to newspaper[:title], newspaper[:url], target: :blank
-        p.navigator__list-stats From #{newspaper[:start_date]} to #{newspaper[:end_date]}
+      li.navigator__list-item data-start="#{newspaper.start_date}" data-end="#{newspaper.end_date}"
+        strong.navigator__list-title= link_to newspaper.title, newspaper.url, target: :blank
+        p.navigator__list-stats From #{newspaper.start_date} to #{newspaper.end_date}
