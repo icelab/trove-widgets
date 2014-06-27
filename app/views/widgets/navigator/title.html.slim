@@ -1,7 +1,7 @@
 .navigator style="height:#{params[:height].to_i-74}px;"
 
   h1.navigator__title #{@state} titles
-  p.navigator__stats #{human_counts('title', @issuecount)} from #{@start_date} to #{@end_date}
+  p.navigator__stats #{human_counts('title', @issuecount)} from <i>#{@start_date}</i> to <i>#{@end_date}</i>
 
   .search.search--state
     input type='text' name='q' placeholder='Filter newspapers by title' class='search__field' role='search__field'
