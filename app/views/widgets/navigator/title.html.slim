@@ -1,13 +1,13 @@
 .navigator style="height:#{params[:height].to_i-74}px;"
 
   h1.navigator__title #{@state} titles
-  p.navigator__stats #{human_counts('title', @issuecount)} from <i>#{@start_date}</i> to <i>#{@end_date}</i>
+  p.navigator__stats role='navigator__stats' <span role='navigator__counter'>#{@issuecount}</span> #{'title'.pluralize(@issuecount)} from <i title='Filter by start date' data-type='start'>#{@start_date}</i> to <i title='Filter by end date' data-type='end'>#{@end_date}</i>
 
   .search.search--state
-    input type='text' name='q' placeholder='Filter newspapers by title' class='search__field' role='search__field'
+    input type='text' name='q' placeholder='Filter newspapers by title' class='search__field' role='navigator__search'
     button type='submit' class='search__button'
 
-  ul.navigator__list role='navigator__list'
+  ul.navigator__list role='navigator__list' data-start="#{@start_date}" data-end="#{@end_date}"
     - for newspaper in @newspapers
       li.navigator__list-item data-start="#{newspaper.start_date}" data-end="#{newspaper.end_date}"
         strong.navigator__list-title= link_to newspaper.title, newspaper.url, target: :blank
