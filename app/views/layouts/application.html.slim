@@ -1,9 +1,25 @@
 doctype html
 html lang='en'
+
   head
     meta charset='utf-8'
     title Trove widget examples
+    = stylesheet_link_tag 'application/application'
     = csrf_meta_tags
-  body style='background:#F9F9F9;'
-    h1 Trove widget examples
-    = yield
+
+  body
+
+    .container
+      .page-header
+        h3.text-muted= link_to 'Trove widgets', root_path
+
+      p.lead Widgets which organisations can embed into their own web pages, in order to show what they have contributed to Trove.
+
+      .body
+
+        ul.nav.nav-tabs
+          li.active= link_to 'Summary', '#'
+          li= link_to 'Title navigator', '#'
+          li= link_to 'Usage summary', '#'
+
+        = yield
