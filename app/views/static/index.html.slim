@@ -28,8 +28,7 @@
       .form-group
         label.col-sm-2.control-label Title
         .col-sm-10.builder__list.builder__list--overflow
-          input type='search' class='form-control builder__search' placeholder='Search newspapers'
-          select multiple='multiple' class='form-control builder__titles'
+          select multiple='multiple' class='builder__titles'
             - for title in @titles
               option value="#{title.id}" #{title.name}
 
@@ -42,4 +41,4 @@
 
     h3 Preview
 
-    script type='text/javascript' src='/assets/widgets/application.js' role='trove-widget' data-type='summary' data-ids='35'
+    -#script type='text/javascript' src='/assets/widgets/application.js' role='trove-widget' data-type='summary' data-ids='35'
