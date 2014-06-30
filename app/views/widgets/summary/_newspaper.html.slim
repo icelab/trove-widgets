@@ -5,6 +5,6 @@
   p.summary__years class="summary__years--#{modifier}" #{human_counts('issue', newspaper.issuecount)} from #{newspaper.start_date} to #{newspaper.end_date}
 
   - unless modifier == 'statesearch'
-    .search.search--summary= render 'form', placeholder: 'Search in newspaper', hidden_name: 'l-advtitle', hidden_value: newspaper.id
+    .search.search--summary= render 'form', placeholder: 'Search this newspaper', hidden_name: 'l-advtitle', hidden_value: newspaper.id
 
   p.summary__stats #{human_counts('article', newspaper.articles_count)}, #{human_counts('comment', newspaper.comments_count)}, #{human_counts('tag', newspaper.tags_count)}
