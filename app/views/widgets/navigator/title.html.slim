@@ -1,6 +1,6 @@
 .navigator style="height:#{params[:height].to_i-74}px;"
 
-  h1.navigator__title #{@state} titles
+  h1.navigator__title #{@state.pluralize} newspapers
   p.navigator__stats role='navigator__stats' <span role='navigator__counter'>#{@issuecount}</span> #{'title'.pluralize(@issuecount)} from <i title='Filter by start date' data-type='start'>#{@start_date}</i> to <i title='Filter by end date' data-type='end'>#{@end_date}</i>
 
   .search.search--state
