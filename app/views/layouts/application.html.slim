@@ -12,15 +12,8 @@ html lang='en'
 
     .container
       .page-header
-        h3.text-muted= link_to 'Trove widgets', root_path
+        h1= link_to 'Trove widgets', root_path
 
       p.lead Widgets which organisations can embed into their own web pages, in order to show what they have contributed to Trove.
 
-      .body
-
-        ul.nav.nav-tabs
-          li.active= link_to 'Summary', '#'
-          li= link_to 'Title navigator', '#'
-          li= link_to 'Usage summary', '#'
-
-        = yield
+      = yield
