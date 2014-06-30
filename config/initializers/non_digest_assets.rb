@@ -1,1 +1,1 @@
-NonStupidDigestAssets.whitelist = ['application.js'] if Rails.env.production?
+NonStupidDigestAssets.whitelist = ['widgets/application.js'] if Rails.env.production?
