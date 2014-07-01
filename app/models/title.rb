@@ -1,3 +1,5 @@
+include ActionView::Helpers::TextHelper
+
 class Title < ActiveRecord::Base
 
   self.primary_key = :trove_id

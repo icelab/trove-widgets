@@ -1,3 +1,3 @@
 $ ->
 
-  $('.builder__titles').multiselect({enableFiltering: true})
+  $('.builder__titles').multiselect({enableFiltering: true, numberDisplayed: 1})
