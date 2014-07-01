@@ -31,16 +31,16 @@ $ ->
   Trove.Router = Backbone.Router.extend(
 
     routes:
-      '': 'index'
-      'types/:type': 'index'
+      '': 'widget'
+      'types/:type': 'widget'
 
-    index: (type) ->
+    widget: (type) ->
       type = 'summary' if type == null
       model = Trove.Store.widgetModel
-      if type != model.get('type')
+      unless type == model.get('type')
         new Trove.Views.Tabs({model: model})
-        new Trove.Views.Preview({mode: model})
-        new Trove.Views.Code({mode: model})
+        new Trove.Views.Preview({model: model})
+        new Trove.Views.Code({model: model})
       model.set({type: type})
 
   )
@@ -58,7 +58,6 @@ $ ->
 
     initialize: ->
       @.model.on('change:type', @.setActive, @);
-      return
 
     setActive: ->
       tabs = $('@nav')
@@ -72,14 +71,15 @@ $ ->
 
   Trove.Views.Preview = Backbone.View.extend(
 
-    template : JST['widget']({world: "World"})
-
     initialize: ->
-      $('@preview').html(@.render().el)
+      @.model.on('change', @.generate, @);
 
     render: ->
-      @.$el.append(@.template)
+      @.$el.append(JST['widget'](@.model.toJSON()))
       @
+
+    generate: ->
+      $('@preview').html(@.render().el)
 
   )
 
@@ -88,14 +88,15 @@ $ ->
 
   Trove.Views.Code = Backbone.View.extend(
 
-    template : JST['widget']({world: "World"})
-
     initialize: ->
-      $('@code').html($('<div/>').text(@.render().$el.html()).html())
+      @.model.on('change', @.generate, @);
 
     render: ->
-      @.$el.append(@.template)
+      @.$el.append(JST['widget'](@.model.toJSON()))
       @
+
+    generate: ->
+      $('@code').html($('<div/>').text(@.render().$el.html()).html())
 
   )
 
