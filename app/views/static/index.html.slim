@@ -15,8 +15,8 @@
     form.form-horizontal
 
       .form-group
-        label.col-sm-3.control-label State
-        .col-sm-9.builder__list
+        label.col-sm-4.control-label State
+        .col-sm-8.builder__list
           label
             input name='state' type='radio' value='all' checked='checked'
             span Without certain state
@@ -25,40 +25,40 @@
               input name='state' type='radio' value="#{state.id}"= state.name
 
       .form-group
-        label.col-sm-3.control-label Title
-        .col-sm-9
+        label.col-sm-4.control-label Title
+        .col-sm-8
           select multiple='multiple' class='builder__titles'
             - for title in @titles
               option value="#{title.id}" #{title.name}
 
       .form-group
-        label.col-sm-3.control-label Credits
-        .col-sm-9
+        label.col-sm-4.control-label Credits
+        .col-sm-8
           input type='text' class='form-control input-sm'
 
       .form-group
-        label.col-sm-3.control-label Background color
+        label.col-sm-4.control-label Background color
         .col-sm-4
-          input type='text' class='form-control input-sm'
+          input type='text' class='form-control input-sm' placeholder='#FFFFFF'
 
       .form-group
-        label.col-sm-3.control-label Text color
+        label.col-sm-4.control-label Text color
         .col-sm-4
-          input type='text' class='form-control input-sm'
+          input type='text' class='form-control input-sm' placeholder='#A9A9A9'
 
       .form-group
-        label.col-sm-3.control-label Title color
+        label.col-sm-4.control-label Title color
         .col-sm-4
-          input type='text' class='form-control input-sm'
+          input type='text' class='form-control input-sm' placeholder='#666666'
 
       .form-group
-        label.col-sm-3.control-label Border color
+        label.col-sm-4.control-label Border color
         .col-sm-4
-          input type='text' class='form-control input-sm'
+          input type='text' class='form-control input-sm' placeholder='#CDCDCD'
 
       .form-group
-        .col-sm-3
-        .col-sm-9
+        .col-sm-4
+        .col-sm-7
           button.btn.btn-success Apply
 
   .builder__preview
