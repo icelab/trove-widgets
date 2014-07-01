@@ -19,7 +19,7 @@
         .col-sm-8.builder__list
           label
             input name='state' type='radio' value='all' checked='checked'
-            span Without certain state
+            span Any state
           - for state in @states
             label
               input name='state' type='radio' value="#{state.id}"= state.name
