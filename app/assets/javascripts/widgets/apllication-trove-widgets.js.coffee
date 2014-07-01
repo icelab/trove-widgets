@@ -1,7 +1,7 @@
 jQuery.noConflict()
-window.TroveWidgets = {}
-
 (($) ->
+
+  window.TroveWidgets = {}
 
   $ ->
 
