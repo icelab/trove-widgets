@@ -15,9 +15,8 @@
     form.form-horizontal
 
       .form-group
-
-        label.col-sm-2.control-label State
-        .col-sm-10.builder__list
+        label.col-sm-3.control-label State
+        .col-sm-9.builder__list
           label
             input name='state' type='radio' value='all' checked='checked'
             span Without certain state
@@ -26,15 +25,40 @@
               input name='state' type='radio' value="#{state.id}"= state.name
 
       .form-group
-        label.col-sm-2.control-label Title
-        .col-sm-10.builder__list.builder__list--overflow
+        label.col-sm-3.control-label Title
+        .col-sm-9
           select multiple='multiple' class='builder__titles'
             - for title in @titles
               option value="#{title.id}" #{title.name}
 
       .form-group
-        .col-sm-2
-        .col-sm-10
+        label.col-sm-3.control-label Credits
+        .col-sm-9
+          input type='text' class='form-control input-sm'
+
+      .form-group
+        label.col-sm-3.control-label Background color
+        .col-sm-4
+          input type='text' class='form-control input-sm'
+
+      .form-group
+        label.col-sm-3.control-label Text color
+        .col-sm-4
+          input type='text' class='form-control input-sm'
+
+      .form-group
+        label.col-sm-3.control-label Title color
+        .col-sm-4
+          input type='text' class='form-control input-sm'
+
+      .form-group
+        label.col-sm-3.control-label Border color
+        .col-sm-4
+          input type='text' class='form-control input-sm'
+
+      .form-group
+        .col-sm-3
+        .col-sm-9
           button.btn.btn-success Apply
 
   .builder__preview
