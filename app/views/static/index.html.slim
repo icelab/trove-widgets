@@ -2,11 +2,11 @@
 
   h2 Choose a widget type
 
-  ul.nav.nav-tabs
+  ul.nav.nav-tabs role='nav'
 
-    li.active= link_to 'Summary', '#types/summary'
-    li= link_to 'Title navigator', '#types/navigator'
-    li= link_to 'Usage summary', '#types/usage'
+    li.active data-type='summary'= link_to 'Summary', '#types/summary'
+    li data-type='navigator'= link_to 'Title navigator', '#types/navigator'
+    li data-type='usage'= link_to 'Usage summary', '#types/usage'
 
   .builder__configurator
 
