@@ -37,7 +37,10 @@ $ ->
     index: (type) ->
       type = 'summary' if type == null
       model = Trove.Store.widgetModel
-      new Trove.Views.Tabs({model: Trove.Store.widgetModel}) if type != model.get('type')
+      if type != model.get('type')
+        new Trove.Views.Tabs({model: model})
+        new Trove.Views.Preview({mode: model})
+        new Trove.Views.Code({mode: model})
       model.set({type: type})
 
   )
@@ -54,13 +57,45 @@ $ ->
   Trove.Views.Tabs = Backbone.View.extend(
 
     initialize: ->
-      this.model.on('change:type', this.setActive, this);
+      @.model.on('change:type', @.setActive, @);
       return
 
     setActive: ->
       tabs = $('@nav')
       tabs.find('li').removeClass('active')
-      tabs.find('[data-type='+this.model.get('type')+']').addClass('active')
+      tabs.find('[data-type='+@.model.get('type')+']').addClass('active')
+
+  )
+
+  # Preview
+  #    -----------------------------------------------
+
+  Trove.Views.Preview = Backbone.View.extend(
+
+    template : JST['widget']({world: "World"})
+
+    initialize: ->
+      $('@preview').html(@.render().el)
+
+    render: ->
+      @.$el.append(@.template)
+      @
+
+  )
+
+  # Code
+  #    -----------------------------------------------
+
+  Trove.Views.Code = Backbone.View.extend(
+
+    template : JST['widget']({world: "World"})
+
+    initialize: ->
+      $('@code').html($('<div/>').text(@.render().$el.html()).html())
+
+    render: ->
+      @.$el.append(@.template)
+      @
 
   )
 
