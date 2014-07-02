@@ -12,7 +12,7 @@ class Widgets::SummaryController < ApplicationController
 
   def state
     response = set_cache(['summary_state', params]) {TroveApi.new.state(params[:state])}
-    @state = State.find(params[:state]).name
+    @state = State.find(response[:state]).name
     @newspapers = response[:titles]
     @issuecount = response[:total]
     @start_date = @newspapers.map{|item| item[:start_date]}.min

@@ -26,8 +26,9 @@ class TroveApi
   end
 
   def state(state)
+    state = State.first.abbrev unless State.pluck(:abbrev).include?(state)
     response = @client.titles_by_state(state)
-    {total: response.total, titles: response.newspaper.inject([]){|memo, newspaper| memo << data_comb(newspaper); memo}}
+    {state: state, total: response.total, titles: response.newspaper.inject([]){|memo, newspaper| memo << data_comb(newspaper); memo}}
   end
 
 private
