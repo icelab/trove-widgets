@@ -2,6 +2,7 @@
 //= require jquery.role.min
 //= require bootstrap
 //= require bootstrap.multiselect
+//= require prettify
 
 //= require underscore
 //= require backbone

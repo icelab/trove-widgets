@@ -162,6 +162,7 @@ $ ->
       _(@.model.toJSON()).each (value, name) ->
         attributes += " data-" + name + "='" + value + "'" unless name == 'multiselect' || value == ''
       $('@script').html($('<div/>').text(@.render().$el.html().replace('div', 'div' + attributes)))
+      prettyPrint()
 
   )
 
@@ -179,6 +180,7 @@ $ ->
 
     generate: ->
       $('@iframe').html($('<div/>').text(@.render().$el.html()))
+      prettyPrint()
 
   )
 
