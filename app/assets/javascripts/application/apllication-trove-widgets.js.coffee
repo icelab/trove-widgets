@@ -118,6 +118,7 @@ $ ->
       'submit' : 'submit'
 
     initialize: ->
+      Backbone.Syphon.deserialize(@, @.model.toJSON())
 
     submit: ->
       @.model.set(Backbone.Syphon.serialize(@))
