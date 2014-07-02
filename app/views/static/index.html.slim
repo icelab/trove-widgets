@@ -22,7 +22,7 @@
             span Any state
           - for state in @states
             label
-              input name='state' type='radio' value="#{state.id}"= state.name
+              input name='state' type='radio' value="#{state.abbrev}"= state.name
 
       .form-group
         label.col-sm-4.control-label Title
