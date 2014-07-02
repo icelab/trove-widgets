@@ -24,10 +24,10 @@
             label
               input name='state' type='radio' value="#{state.abbrev}"= state.name
 
-      .form-group
+      .form-group role='configurator__ids'
         label.col-sm-4.control-label Title
         .col-sm-8
-          select name='ids' multiple='multiple' class='builder__titles'
+          select name='ids' multiple='multiple' role='configurator__ids-select'
             - for title in @titles
               option value="#{title.id}" #{title.name}
 
