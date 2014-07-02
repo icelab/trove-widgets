@@ -23,40 +23,40 @@ jQuery.noConflict()
     # Parse and set data options
     setOptions: (el) ->
 
-      options = {}
-      type = options['type'] = $(el).data('type')
-      options['width'] = 300
-      options['height'] = 180
+      options = $(el).data()
+      $.extend options,
+        width  : 300
+        height : 180
 
+      type = $(el).data('type')
+      ids = $(el).data('ids')
+      state = $(el).data('state')
+
+      # Summary widget
       if type == 'summary'
-
-        ids = $(el).data('ids')
-        state = $(el).data('state')
+        # Single and multiple newspapers summary
         if ids != undefined && state == undefined
-          options['action'] = (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
-          options['params'] = 'ids=' + ids
+          options.action = (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
+        # Particular state summary
         else if state != undefined && ids == undefined
-          options['height'] = 164
-          options['action'] = 'state'
-          options['params'] = 'state=' + state
-        else if ids != undefined && state != undefined
-          options['action'] = 'statesearch'
-          options['params'] = 'ids=' + ids + '&state=' + state
-
+          $.extend options,
+            action : 'state'
+            height : 164
+        # State + newspapers search
+        else if state != undefined && ids != undefined
+          options.action = 'statesearch'
+      # Navigator widget
       else if type == 'navigator'
-
-          options['height'] = 400
-          options['action'] = 'title'
-          options['params'] = 'state=' + $(el).data('state')
-
-      options['params'] = options.params + '&height=' + options.height
+        $.extend options,
+          action : 'title'
+          height : 400
       return options
 
 
     # Render iframe with options
     render: (el, options) ->
 
-      src = '/widgets/' + options.type + '/' + options.action + '/?type=' + options.type + '&' + options.params
+      src = '/widgets/' + options.type + '/' + options.action + '/?' + $.param(options)
       template = '<iframe src="'+src+'" scrolling="no" frameborder="0" style="border:none; width:'+options.width+'px; height:'+options.height+'px;" />'
       $(el).after(template)
 
