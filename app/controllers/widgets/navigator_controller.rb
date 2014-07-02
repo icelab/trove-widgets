@@ -3,7 +3,7 @@ class Widgets::NavigatorController < ApplicationController
   layout 'widgets'
 
   def title
-    response = set_cache(['navigator_title', params]) {TroveApi.new.state(params[:state])}
+    response = set_cache(['navigator_title', caching_params(params)]) {TroveApi.new.state(params[:state])}
     @state = State.find(response[:state]).name
     @newspapers = response[:titles]
     @issuecount = response[:total]

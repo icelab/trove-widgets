@@ -3,15 +3,15 @@ class Widgets::SummaryController < ApplicationController
   layout 'widgets'
 
   def single
-    @newspapers = set_cache(['summary_single', params]) {TroveApi.new.single_include_years(params[:ids])}
+    @newspapers = set_cache(['summary_single', caching_params(params)]) {TroveApi.new.single_include_years(params[:ids])}
   end
 
   def multiple
-    @newspapers = set_cache(['summary_multiple', params]) {TroveApi.new.multiple_include_years(params[:ids])}
+    @newspapers = set_cache(['summary_multiple', caching_params(params)]) {TroveApi.new.multiple_include_years(params[:ids])}
   end
 
   def state
-    response = set_cache(['summary_state', params]) {TroveApi.new.state(params[:state])}
+    response = set_cache(['summary_state', caching_params(params)]) {TroveApi.new.state(params[:state])}
     @state = State.find(response[:state]).name
     @newspapers = response[:titles]
     @issuecount = response[:total]
@@ -20,7 +20,7 @@ class Widgets::SummaryController < ApplicationController
   end
 
   def statesearch
-    @newspapers = set_cache(['summary_statesearch', params]) {TroveApi.new.multiple_include_years(params[:ids])}
+    @newspapers = set_cache(['summary_statesearch', caching_params(params)]) {TroveApi.new.multiple_include_years(params[:ids])}
     @state = State.find(params[:state]).name
   end
 
