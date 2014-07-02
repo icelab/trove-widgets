@@ -83,7 +83,7 @@ $ ->
       attributes = ''
       _(@.model.toJSON()).each (value, name) ->
         attributes += " data-" + name + "='" + value + "'" unless name == 'multiselect' || value == '' || value == null || value == 'any'
-      $('@preview').html(@.render().$el.html().replace('script', 'script' + attributes))
+      $('@preview').html(@.render().$el.html().replace('div', 'div' + attributes))
 
   )
 
@@ -103,7 +103,7 @@ $ ->
       attributes = ''
       _(@.model.toJSON()).each (value, name) ->
         attributes += " data-" + name + "='" + value + "'" unless name == 'multiselect' || value == '' || value == null || value == 'any'
-      $('@code').html($('<div/>').text(@.render().$el.html().replace('script', 'script' + attributes)))
+      $('@code').html($('<div/>').text(@.render().$el.html().replace('div', 'div' + attributes)))
 
   )
 
