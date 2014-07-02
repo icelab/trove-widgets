@@ -5,7 +5,7 @@
   ul.nav.nav-tabs role='nav'
 
     li.active data-type='summary'= link_to 'Summary', '#types/summary'
-    li data-type='navigator'= link_to 'Title navigator', '#types/navigator'
+    li data-type='navigator'= link_to 'Newspaper navigator', '#types/navigator'
     li data-type='usage'= link_to 'Usage summary', '#types/usage'
 
   .builder__configurator
@@ -25,7 +25,7 @@
               input name='state' type='radio' value="#{state.abbrev}"= state.name
 
       .form-group role='configurator__ids'
-        label.col-sm-4.control-label Title
+        label.col-sm-4.control-label Newspapers
         .col-sm-8
           select name='ids' multiple='multiple' role='configurator__ids-select'
             - for title in @titles

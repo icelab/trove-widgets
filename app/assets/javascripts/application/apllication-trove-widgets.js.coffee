@@ -84,7 +84,7 @@ $ ->
 
     initialize: ->
       @.model.on('change:type', @.selectorVisibility, @)
-      @.model.on('change:type change:ids chenge:state', @.setType, @)
+      @.model.on('change:type change:ids change:state', @.setType, @)
       Backbone.Syphon.deserialize(@, @.model.toJSON())
 
     submit: ->
@@ -104,6 +104,7 @@ $ ->
       model = @.model
       type = model.get('type')
       state = model.get('state')
+      state = undefined if state == 'any'
       ids = model.get('ids')
       ids = undefined if ids == '' || ids == ' ' || ids == null
 
@@ -111,7 +112,8 @@ $ ->
         if type == 'summary'
           if ids != undefined && state == undefined
             action: (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
-          else if state != undefined && ids == undefined
+            height : 180
+          else if (state != undefined && ids == undefined) || (state == undefined && ids == undefined)
             action : 'state'
             height : 164
           else if state != undefined && ids != undefined
