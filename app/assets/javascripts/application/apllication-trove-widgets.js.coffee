@@ -148,6 +148,7 @@ $ ->
     background : '#FFFFFF'
     text       : '#A9A9A9'
     title      : '#666666'
+    subtitle   : '#CDCDCD'
     border     : '#CDCDCD'
   })
 

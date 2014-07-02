@@ -10,6 +10,7 @@ $b: 'search'
   border: 1px solid $color__gray
   outline: none
   +border-radius(5px)
+  background: $color__white
 .#{$b}__button
   display: block
   width: 22px
@@ -20,6 +21,7 @@ $b: 'search'
   border: none
   background-image: image-url('/widgets/search.png')
   background-image: inline-image('/widgets/search.png')
+  background-color: $color__white
   cursor: pointer
 
 .#{$b}--summary
@@ -29,3 +31,12 @@ $b: 'search'
   margin-bottom: 17px
   .#{$b}__button
     cursor: none
+
+\:-moz-placeholder, \::-moz-placeholder, \:-ms-input-placeholder
+  color: $color__light
+\:-moz-placeholder
+  color: $color__light
+\::-moz-placeholder
+  color: $color__light
+\:-ms-input-placeholder
+  color: $color__light
