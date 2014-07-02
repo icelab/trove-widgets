@@ -37,7 +37,7 @@ $ ->
     widget: (type) ->
       type = 'summary' if type == null
       model = Trove.Store.widgetModel
-      unless type == model.get('type')
+      if model.get('type') == undefined
         new Trove.Views.Tabs({model: model})
         new Trove.Views.Preview({model: model})
         new Trove.Views.Code({model: model})
@@ -58,7 +58,7 @@ $ ->
   Trove.Views.Tabs = Backbone.View.extend(
 
     initialize: ->
-      @.model.on('change:type', @.setActive, @);
+      @.model.on('change:type', @.setActive, @)
 
     setActive: ->
       tabs = $('@nav')
@@ -73,7 +73,7 @@ $ ->
   Trove.Views.Preview = Backbone.View.extend(
 
     initialize: ->
-      @.model.on('change', @.generate, @);
+      @.model.on('change', @.generate, @)
 
     render: ->
       @.$el.html(JST['widget'](@.model.toJSON()))
@@ -93,7 +93,7 @@ $ ->
   Trove.Views.Code = Backbone.View.extend(
 
     initialize: ->
-      @.model.on('change', @.generate, @);
+      @.model.on('change', @.generate, @)
 
     render: ->
       @.$el.html(JST['widget'](@.model.toJSON()))
@@ -118,11 +118,20 @@ $ ->
       'submit' : 'submit'
 
     initialize: ->
+      @.model.on('change:type', @.selectorVisibility, @)
       Backbone.Syphon.deserialize(@, @.model.toJSON())
 
     submit: ->
       @.model.set(Backbone.Syphon.serialize(@))
       return false
+
+    selectorVisibility: ->
+      el = $('@configurator__ids')
+      if @.model.get('type') == 'navigator'
+        el.css('display', 'none')
+        @.model.set('ids', '')
+      else
+        el.css('display', 'block')
 
   )
 
