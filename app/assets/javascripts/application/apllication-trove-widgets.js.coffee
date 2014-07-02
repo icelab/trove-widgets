@@ -41,6 +41,7 @@ $ ->
         new Trove.Views.Tabs({model: model})
         new Trove.Views.Preview({model: model})
         new Trove.Views.Code({model: model})
+        new Trove.Views.Configurator({model: model})
       model.set({type: type})
 
   )
@@ -51,8 +52,8 @@ $ ->
   #  |-----------------------------------------------
   #
 
-  # Tabs
-  #    -----------------------------------------------
+  #  Tabs
+  #  -----------------------------------------------
 
   Trove.Views.Tabs = Backbone.View.extend(
 
@@ -66,8 +67,8 @@ $ ->
 
   )
 
-  # Preview
-  #    -----------------------------------------------
+  #  Preview
+  #  -----------------------------------------------
 
   Trove.Views.Preview = Backbone.View.extend(
 
@@ -75,16 +76,19 @@ $ ->
       @.model.on('change', @.generate, @);
 
     render: ->
-      @.$el.append(JST['widget'](@.model.toJSON()))
+      @.$el.html(JST['widget'](@.model.toJSON()))
       @
 
     generate: ->
-      $('@preview').html(@.render().el)
+      attributes = ''
+      _(@.model.toJSON()).each (value, name) ->
+        attributes += " data-" + name + "='" + value + "'" unless name == 'multiselect' || value == '' || value == null || value == 'all'
+      $('@preview').html(@.render().$el.html().replace('script', 'script' + attributes))
 
   )
 
-  # Code
-  #    -----------------------------------------------
+  #  Code
+  #  -----------------------------------------------
 
   Trove.Views.Code = Backbone.View.extend(
 
@@ -92,13 +96,35 @@ $ ->
       @.model.on('change', @.generate, @);
 
     render: ->
-      @.$el.append(JST['widget'](@.model.toJSON()))
+      @.$el.html(JST['widget'](@.model.toJSON()))
       @
 
     generate: ->
-      $('@code').html($('<div/>').text(@.render().$el.html()).html())
+      attributes = ''
+      _(@.model.toJSON()).each (value, name) ->
+        attributes += " data-" + name + "='" + value + "'" unless name == 'multiselect' || value == '' || value == null || value == 'all'
+      $('@code').html($('<div/>').text(@.render().$el.html().replace('script', 'script' + attributes)))
 
   )
+
+  #  Configuration
+  #  -----------------------------------------------
+
+  Trove.Views.Configurator = Backbone.View.extend(
+
+    el: '@configurator'
+
+    events:
+      'submit' : 'submit'
+
+    initialize: ->
+
+    submit: ->
+      @.model.set(Backbone.Syphon.serialize(@))
+      return false
+
+  )
+
 
   #
   #  |-----------------------------------------------

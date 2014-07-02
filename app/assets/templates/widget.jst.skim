@@ -1,1 +1,1 @@
-script type='text/javascript' src='/assets/widgets/application.js' role='trove-widget' data-type='#{@type}' data-state='#{@state}'
+script type='text/javascript' src='/assets/widgets/application.js' role='trove-widget' data-type='#{@type}'
