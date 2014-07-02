@@ -7,6 +7,35 @@ html lang='en'
     = stylesheet_link_tag 'widgets/application'
     = javascript_include_tag  'widgets/application'
 
+    css:
+      html, .widget__header-logo, .search__field, .search__button {
+        background-color: #{params[:background]};
+      }
+      .widget__inner, .search__field {
+        border-color: #{params[:border]};
+      }
+      body {
+        color: #{params[:text]};
+      }
+      p.summary__stats {
+        color: #{params[:subtitle]};
+      }
+      ::-webkit-input-placeholder {
+        color: #{params[:subtitle]};
+      }
+      :-moz-placeholder {
+        color: #{params[:subtitle]};
+      }
+      ::-moz-placeholder {
+        color: #{params[:subtitle]};
+      }
+      :-ms-input-placeholder {
+        color: #{params[:subtitle]};
+      }
+      h1.summary__title, h1.navigator__title, strong.navigator__list-title, strong.navigator__list-title a {
+        color: #{params[:title]}
+      }
+
   body
 
     = content_tag :div, class: 'widget', data: data_params, role: 'trove-widget__wrapper' do
