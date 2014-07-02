@@ -20,7 +20,10 @@
 
 $ ->
 
-  $('@configurator__ids-select').multiselect({enableFiltering: true, numberDisplayed: 1, buttonWidth: '296px'})
+  $('@configurator__ids-select').multiselect
+    enableFiltering : true
+    numberDisplayed : 1
+    buttonWidth     : '296px'
 
   #
   #  |-----------------------------------------------
@@ -44,7 +47,7 @@ $ ->
         new Trove.Views.Script(options)
         new Trove.Views.Iframe(options)
         new Trove.Views.Configurator(options)
-      model.set({type: type})
+      model.set(type: type)
 
   )
 
@@ -131,7 +134,7 @@ $ ->
       @.model.on('change', @.generate, @)
 
     render: ->
-      @.$el.html(JST['script'](@.model.toJSON()))
+      @.$el.html(JST['script']())
       @
 
     generate: ->
@@ -151,7 +154,7 @@ $ ->
       @.model.on('change', @.generate, @)
 
     render: ->
-      @.$el.html(JST['script'](@.model.toJSON()))
+      @.$el.html(JST['script']())
       @
 
     generate: ->
@@ -171,7 +174,7 @@ $ ->
       @.model.on('change', @.generate, @)
 
     render: ->
-      @.$el.html(JST['iframe']({model: @.model.toJSON(), params: $.param(@.model.toJSON())}))
+      @.$el.html(JST['iframe'](model: @.model.toJSON(), params: $.param(@.model.toJSON())))
       @
 
     generate: ->
@@ -186,7 +189,7 @@ $ ->
   #
 
   Trove.Models.Widget = Backbone.Model.extend()
-  Trove.Store.widgetModel = new Trove.Models.Widget({
+  Trove.Store.widgetModel = new Trove.Models.Widget(
     state      : 'tas'
     background : '#FFFFFF'
     text       : '#A9A9A9'
@@ -194,7 +197,7 @@ $ ->
     subtitle   : '#CDCDCD'
     border     : '#CDCDCD'
     width      : 300
-  })
+  )
 
   #
   #  |-----------------------------------------------
