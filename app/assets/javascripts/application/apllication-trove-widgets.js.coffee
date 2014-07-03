@@ -136,7 +136,7 @@ $ ->
       @.model.on('change', @.generate, @)
 
     render: ->
-      @.$el.html(JST['script']())
+      @.$el.html(JST['script'](root: @.model.get('root')))
       @
 
     generate: ->
@@ -156,7 +156,7 @@ $ ->
       @.model.on('change', @.generate, @)
 
     render: ->
-      @.$el.html(JST['script']())
+      @.$el.html(JST['script'](root: @.model.get('root')))
       @
 
     generate: ->
@@ -201,6 +201,7 @@ $ ->
     subtitle   : '#CDCDCD'
     border     : '#CDCDCD'
     width      : 300
+    root       : $('@configurator').data('root')
   )
 
   #

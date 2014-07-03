@@ -1,2 +1,2 @@
-script type='text/javascript' src='/assets/widgets/application.js'
+script type='text/javascript' src='#{@root}assets/widgets/application.js'
 div role='trove-widget'
