@@ -196,6 +196,7 @@ $ ->
   Trove.Models.Widget = Backbone.Model.extend()
   Trove.Store.widgetModel = new Trove.Models.Widget(
     state      : 'tas'
+    heading    : 'Digitised on Trove'
     background : '#FFFFFF'
     text       : '#A9A9A9'
     title      : '#666666'
