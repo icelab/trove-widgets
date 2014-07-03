@@ -17,7 +17,7 @@ html lang='en'
       body {
         color: #{params[:text]};
       }
-      p.summary__stats {
+      p.summary__stats, .widget__credits {
         color: #{params[:subtitle]};
       }
       ::-webkit-input-placeholder {
@@ -45,3 +45,4 @@ html lang='en'
           = link_to 'Trove', 'http://trove.nla.gov.au/', title: "#{data_params[:heading]}", target: :blank, class: 'widget__header-logo'
         .widget__body
           = yield
+          .widget__credits #{params[:credits]}

@@ -124,6 +124,7 @@ $ ->
           action : 'title'
           height : 400
 
+      options.height = options.height + 10 unless @.model.get('credits') == undefined || model.get('credits') == ''
       model.set options
 
   )
