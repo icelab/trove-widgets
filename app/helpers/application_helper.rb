@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def data_params
-    params.except(:controller).merge({root: root_path})
+    params.except(:controller)
   end
 
   def human_counts(word, count)
