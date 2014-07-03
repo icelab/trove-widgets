@@ -21,9 +21,10 @@
 $ ->
 
   $('@configurator__ids-select').multiselect
-    enableFiltering : true
-    numberDisplayed : 1
-    buttonWidth     : '296px'
+    enableFiltering                : true
+    enableCaseInsensitiveFiltering : true
+    numberDisplayed                : 1
+    buttonWidth                    : '296px'
 
   #
   #  |-----------------------------------------------
