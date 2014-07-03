@@ -2,6 +2,8 @@
 
   h2 Choose a widget type
 
+  p Summary widgets display the details of one or more newspapers, or those for a particular state. Newspaper navigator widgets show a filterable list of state newspapers. Usage summary widgets show usage statistics for particular papers.
+
   ul.nav.nav-tabs role='nav'
 
     li.active data-type='summary'= link_to 'Summary', '#types/summary'
@@ -72,11 +74,11 @@
     .builder__widget-preview role='preview' &nbsp;
 
     h3 Code
-    p You could use modern script syntax for widget instance (preferable)
+    p Paste this code into your web page where you want the widget to appear.
     .highlight
       pre
         code class='prettyprint' role='script'
-    p Or good old iframe
+    p If the above code does not work for you, try this iframe version below.
     .highlight
       pre
         code class='prettyprint' role='iframe'
