@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery.role.min
+//= require jquery.simplecolorpicker
 //= require bootstrap
 //= require bootstrap.multiselect
 //= require prettify
