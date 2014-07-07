@@ -193,6 +193,7 @@ DEPENDENCIES
   dotenv-rails
   execjs
   foreman
+  hashie
   jquery-rails
   jquery-tmpl-rails
   json

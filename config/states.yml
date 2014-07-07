@@ -1,0 +1,25 @@
+states:
+  nsw:
+    abbrev: nsw
+    name: New South Wales
+  sa:
+    abbrev: sa
+    name: South Australia
+  qld:
+    abbrev: qld
+    name: Queensland
+  vic:
+    abbrev: vic
+    name: Victoria
+  wa:
+    abbrev: wa
+    name: Western Australia
+  tas:
+    abbrev: tas
+    name: Tasmania
+  act:
+    abbrev: act
+    name: ACT
+  nt:
+    abbrev: nt
+    name: Northern Territory
