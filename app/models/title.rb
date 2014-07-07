@@ -1,20 +1,44 @@
-include ActionView::Helpers::TextHelper
+require 'pstore'
 
-class Title < ActiveRecord::Base
+class Title
 
-  self.primary_key = :trove_id
-  belongs_to :state, class_name: State
+  def initialize(file="#{Rails.root}/db/titles.pstore")
+    @file = file
+  end
 
-  def self.sync_counters
-    all.each do |title|
-      p title.name
-      @client = Trove::Client.new(key: ENV['TROVE_API_KEY'])
-      issues = @client.title_include_years(title.trove_id).year.inject(0){|memo, el| memo + el.issuecount.to_i}
-      articles = @client.title_articles_count(title.trove_id)
-      comments = @client.title_comments_count(title.trove_id)
-      tags = @client.title_tags_count(title.trove_id)
-      title.update(issue_count: issues, article_count: articles, comment_count: comments, tag_count: tags)
-      sleep 5.seconds
+  def store
+    @store ||= PStore.new(@file)
+  end
+
+  def items(readonly=true)
+    @items ||= Hashie::Mash.new(store.transaction{store[:title]}.inject({}){|memo, item| memo[item[:id]] = item; memo}).values
+  end
+
+  def sorted
+    items.sort_by(&:name)
+  end
+
+  def add(title)
+    store.transaction do
+      store[:title] ||= []
+      store[:title] << title
+    end
+  end
+
+  def clear
+    store.transaction do
+      store[:title] = []
+    end
+  end
+
+  def self.sync
+    titles = self.new
+    titles.clear
+    State.new.items.each do |state|
+      trove_api_titles = Trove::Client.new(key: ENV['TROVE_API_KEY']).titles_by_state(state.abbrev)
+      trove_api_titles.newspaper.each do |newspaper|
+        titles.add({id: newspaper.id, name: newspaper.title, abbrev: state.abbrev})
+      end
     end
   end
 
