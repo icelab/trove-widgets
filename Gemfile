@@ -23,6 +23,7 @@ gem 'dotenv-rails'
 gem 'unicorn'
 gem 'trove', git: 'https://github.com/icelab/trove'
 gem 'dalli'
+gem 'hashie'
 
 group :davelopment do
   gem 'spring'

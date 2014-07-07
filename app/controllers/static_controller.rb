@@ -1,7 +1,7 @@
 class StaticController < ApplicationController
 
   def index
-    @states = State.order('name ASC')
+    @states = State.all.sorted
     @titles = Title.order('name ASC')
   end
 
