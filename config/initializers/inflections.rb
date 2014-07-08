@@ -7,7 +7,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'Victoria', 'Victorian'
   inflect.irregular 'Australia', 'Australian'
   inflect.irregular 'Tasmania', 'Tasmanian'
-  inflect.uncountable ['territory', 'queensland']
+  inflect.uncountable ['territory', 'queensland', 'act']
 end
 
 # These inflection rules are supported but not enabled by default:
