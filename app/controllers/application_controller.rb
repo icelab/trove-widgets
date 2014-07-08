@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def caching_params(params)
-    params.select{|param| %w(action type state ids).include?(param)}
+    params.select{|param| %w(view type state ids).include?(param)}
   end
 
   def set_cache(id, &block)

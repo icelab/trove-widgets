@@ -10,11 +10,8 @@ jQuery.noConflict()
       that = @
       $('@trove-widget__preload').load el.data('root') + 'widgets/' + el.data('type') + '/' + el.data('view') + '?' + $.param(el.data()), ->
         el.css('background', 'none')
-        setTimeout (->
-          namespace = that[el.data('type') + '_' + el.data('view')]
-          namespace.initialize() if typeof(namespace) != 'undefined'
-        ), 500
-
+        namespace = that[el.data('type') + '_' + el.data('view')]
+        namespace.initialize() if typeof(namespace) != 'undefined'
 
 
     common:
@@ -24,12 +21,20 @@ jQuery.noConflict()
         initialize: () ->
 
           items = $('@summary__item')
-          heights = items.map(->
-            $(@).height()
-          ).get()
-          maxHeight = Math.max.apply(null, heights);
-          $.each items, () ->
-            $(@).css('height', maxHeight)
+
+          setInterval (->
+            if items.filter("[data-height='auto']").length > 0
+              parent = items.first().parent()
+              heights = items.map(->
+                $(@).height()
+              ).get()
+              maxHeight = Math.max.apply(null, heights)
+              parentHeight = parent.height()
+              maxHeight = parentHeight if maxHeight < parentHeight
+              $.each items, () ->
+                $(@).css('height', maxHeight)
+                $(@).attr('data-height', 'manual')
+          ), 1000
 
           that = @
           timerId = setInterval (->
