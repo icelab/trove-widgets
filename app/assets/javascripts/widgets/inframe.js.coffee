@@ -13,31 +13,44 @@ jQuery.noConflict()
 
     common:
 
-      reshuffle: () ->
+      reshuffle:
 
-        timerId = setInterval (->
+        initialize: () ->
+
           items = $('@summary__item')
+          heights = items.map(->
+            $(@).height()
+          ).get()
+          maxHeight = Math.max.apply(null, heights);
+          $.each items, () ->
+            $(@).css('height', maxHeight)
+
+          that = @
+          timerId = setInterval (->
+            that.scroll(items)
+          ), 5000
+
+          $('input').focus ->
+            clearInterval(timerId)
+
+        scroll: (items) ->
           current = items.filter("[data-type='active']")
           next = (if current.next().length is 0 then items.first() else current.next())
           current.attr('data-type', 'normal')
           next.attr('data-type', 'active')
           items.first().animate({'margin-top': -(current.index())*current.height()}, 500, 'linear')
-        ), 5000
-
-        $('input').focus ->
-          clearInterval(timerId)
 
 
     summary_multiple:
 
       initialize: ->
-        TroveWidgets.inFrame.common.reshuffle();
+        TroveWidgets.inFrame.common.reshuffle.initialize();
 
 
     summary_statesearch:
 
       initialize: ->
-        TroveWidgets.inFrame.common.reshuffle();
+        TroveWidgets.inFrame.common.reshuffle.initialize();
 
 
     navigator_title:
