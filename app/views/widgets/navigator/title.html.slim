@@ -1,4 +1,4 @@
-.navigator style="height:#{params[:height].to_i-"#{params[:credits].empty? ? 74 : 94}".to_i}px;"
+.navigator style="height:#{params[:height].to_i-"#{(params[:credits] && params[:credits].empty?) ? 74 : 94}".to_i}px;"
 
   h1.navigator__title #{@state.pluralize} newspapers
   p.navigator__stats role='navigator__stats' <span role='navigator__counter'>#{@issuecount}</span> #{'title'.pluralize(@issuecount)} from <i title='Filter by start date' data-type='start'>#{@start_date}</i> to <i title='Filter by end date' data-type='end'>#{@end_date}</i>

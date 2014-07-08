@@ -167,7 +167,9 @@ $ ->
       _(@.model.toJSON()).each (value, name) ->
         attributes += " data-" + name + "='" + value + "'" unless name == 'multiselect' || value == ''
       $('@script').html($('<div/>').text(@.render().$el.html().replace('div', 'div' + attributes)))
-      prettyPrint()
+      #hljs.initHighlightingOnLoad()
+      $('@script').each (i, e) ->
+        hljs.highlightBlock e
 
   )
 
@@ -185,7 +187,9 @@ $ ->
 
     generate: ->
       $('@iframe').html($('<div/>').text(@.render().$el.html()))
-      prettyPrint()
+      $('@iframe').each (i, e) ->
+        hljs.highlightBlock e
+
 
   )
 

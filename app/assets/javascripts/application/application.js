@@ -3,7 +3,7 @@
 //= require jquery.simplecolorpicker
 //= require bootstrap
 //= require bootstrap.multiselect
-//= require prettify
+//= require highlight.pack
 
 //= require underscore
 //= require backbone
