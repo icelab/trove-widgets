@@ -27,6 +27,8 @@ gem 'hashie'
 group :davelopment do
   gem 'spring'
   gem 'foreman'
+  gem 'capistrano', '2.15.5'
+  gem 'net-ssh', '~> 2.7.0'
 end
 
 group :production do
