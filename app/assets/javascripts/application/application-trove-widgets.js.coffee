@@ -114,13 +114,13 @@ $ ->
         if type == 'summary'
           if ids != undefined && state == undefined
             action: (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
-            height : 180
+            height : 200
           else if (state != undefined && ids == undefined) || (state == undefined && ids == undefined)
             action : 'state'
             height : 164
           else if state != undefined && ids != undefined
             action : 'statesearch'
-            height : 180
+            height : 200
         else if type == 'navigator'
           action : 'title'
           height : 400
