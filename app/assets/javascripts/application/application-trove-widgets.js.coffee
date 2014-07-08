@@ -229,9 +229,9 @@ $ ->
     state      : 'tas'
     heading    : 'Digitised on Trove'
     background : '#FFFFFF'
-    text       : '#A9A9A9'
-    title      : '#666666'
-    subtitle   : '#CDCDCD'
+    text       : '#777777'
+    title      : '#333333'
+    subtitle   : '#777777'
     border     : '#CDCDCD'
     width      : 300
     root       : $('@configurator').data('root')
