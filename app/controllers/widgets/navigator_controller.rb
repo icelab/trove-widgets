@@ -1,6 +1,6 @@
 class Widgets::NavigatorController < ApplicationController
 
-  layout 'widgets'
+  layout false
 
   def title
     response = set_cache(['navigator_title', caching_params(params)]) {TroveApi.new.state(params[:state])}

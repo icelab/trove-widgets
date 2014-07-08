@@ -1,6 +1,6 @@
 class Widgets::SummaryController < ApplicationController
 
-  layout 'widgets'
+  layout false
 
   def single
     @newspapers = set_cache(['summary_single', caching_params(params)]) {TroveApi.new.single_include_years(params[:ids])}

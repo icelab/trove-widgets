@@ -6,9 +6,15 @@ jQuery.noConflict()
 
     initialize: (el) ->
 
-      # Call iframe related namaspace
-      namaspace = @[el.data('type') + '_' + el.data('action')]
-      namaspace.initialize() if typeof(namaspace) != 'undefined'
+      # Load children pages
+      that = @
+      $('@trove-widget__preload').load el.data('root') + 'widgets/' + el.data('type') + '/' + el.data('view') + '?' + $.param(el.data()), ->
+        el.css('background', 'none')
+        setTimeout (->
+          namespace = that[el.data('type') + '_' + el.data('view')]
+          namespace.initialize() if typeof(namespace) != 'undefined'
+        ), 500
+
 
 
     common:

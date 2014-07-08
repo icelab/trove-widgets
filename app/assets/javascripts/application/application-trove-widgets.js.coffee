@@ -113,16 +113,16 @@ $ ->
       options =
         if type == 'summary'
           if ids != undefined && state == undefined
-            action: (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
+            view: (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
             height : 200
           else if (state != undefined && ids == undefined) || (state == undefined && ids == undefined)
-            action : 'state'
+            view : 'state'
             height : 184
           else if state != undefined && ids != undefined
-            action : 'statesearch'
+            view : 'statesearch'
             height : 200
         else if type == 'navigator'
-          action : 'title'
+          view : 'title'
           height : 400
 
       options.height = options.height + 20 unless @.model.get('credits') == undefined || model.get('credits') == ''
