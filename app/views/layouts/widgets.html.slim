@@ -45,4 +45,4 @@ html lang='en'
           = link_to 'Trove', 'http://trove.nla.gov.au/', title: "#{data_params[:heading]}", target: :blank, class: 'widget__header-logo'
         .widget__body
           = yield
-          .widget__credits #{params[:credits]}
+          .widget__credits class="widget__credits--#{params[:type]}-#{params[:action]}" #{params[:credits]}

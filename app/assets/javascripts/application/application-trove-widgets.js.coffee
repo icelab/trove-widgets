@@ -86,7 +86,7 @@ $ ->
 
     initialize: ->
       @.model.on('change:type', @.selectorVisibility, @)
-      @.model.on('change:type change:ids change:state', @.setType, @)
+      @.model.on('change:type change:ids change:state change:credits', @.setType, @)
       Backbone.Syphon.deserialize(@, @.model.toJSON())
 
     submit: ->
@@ -117,7 +117,7 @@ $ ->
             height : 200
           else if (state != undefined && ids == undefined) || (state == undefined && ids == undefined)
             action : 'state'
-            height : 164
+            height : 184
           else if state != undefined && ids != undefined
             action : 'statesearch'
             height : 200
@@ -125,7 +125,7 @@ $ ->
           action : 'title'
           height : 400
 
-      options.height = options.height + 10 unless @.model.get('credits') == undefined || model.get('credits') == ''
+      options.height = options.height + 20 unless @.model.get('credits') == undefined || model.get('credits') == ''
       model.set options
 
   )
@@ -226,7 +226,7 @@ $ ->
 
   Trove.Models.Widget = Backbone.Model.extend()
   Trove.Store.widgetModel = new Trove.Models.Widget(
-    state      : 'tas'
+    state      : 'nt'
     heading    : 'Digitised on Trove'
     background : '#FFFFFF'
     text       : '#777777'
