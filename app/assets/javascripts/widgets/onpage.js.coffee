@@ -2,7 +2,7 @@ jQuery.noConflict()
 (($) ->
 
 
-  window.TroveWidgets.inPage =
+  window.TroveWidgets.onPage =
 
     initialize: ->
 
@@ -23,7 +23,7 @@ jQuery.noConflict()
     # Render iframe with options
     render: (el, options) ->
 
-      src = options.root + 'widgets/' + options.type + '/' + options.action + '/?' + $.param(options)
+      src = options.root + 'widgets/preload?' + $.param(options)
       template = '<iframe src="'+src+'" scrolling="no" frameborder="0" style="border:none; width:'+options.width+'px; height:'+options.height+'px;" />'
       $(el).after(template)
 

@@ -44,5 +44,5 @@ html lang='en'
           b #{data_params[:heading]}
           = link_to 'Trove', 'http://trove.nla.gov.au/', title: "#{data_params[:heading]}", target: :blank, class: 'widget__header-logo'
         .widget__body
-          = yield
+          .widget__preload role='trove-widget__preload'= yield
           .widget__credits class="widget__credits--#{params[:type]}-#{params[:action]}" #{params[:credits]}
