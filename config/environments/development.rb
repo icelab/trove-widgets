@@ -35,4 +35,7 @@ Rails.application.configure do
   # Default cache store
   config.cache_store = :dalli_store, {expires_in: 1.day, compress: true}
 
+  config.assets.digest = true
+  config.static_cache_control = "public, max-age=3600"
+
 end
