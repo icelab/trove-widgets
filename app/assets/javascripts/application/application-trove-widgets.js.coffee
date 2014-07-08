@@ -182,7 +182,7 @@ $ ->
       @.model.on('change', @.generate, @)
 
     render: ->
-      @.$el.html(JST['iframe'](model: @.model.toJSON(), params: $.param(@.model.toJSON())))
+      @.$el.html(JST['iframe'](model: @.model.toJSON(), params: $.param(@.model.omit('root'))))
       @
 
     generate: ->
