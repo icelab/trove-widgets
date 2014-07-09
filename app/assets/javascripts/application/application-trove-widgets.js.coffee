@@ -117,13 +117,13 @@ $ ->
         if type == 'summary'
           if ids != undefined && state == undefined
             view: (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
-            height : 200
+            height : 203
           else if (state != undefined && ids == undefined) || (state == undefined && ids == undefined)
             view : 'state'
-            height : 184
+            height : 185
           else if state != undefined && ids != undefined
             view : 'statesearch'
-            height : 200
+            height : 203
         else if type == 'navigator'
           view : 'title'
           height : 400
