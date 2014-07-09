@@ -23,6 +23,28 @@ p.#{$b}__stats
   font-size: $font-size--less
   color: $color__light
   white-space: nowrap
-
 p.#{$b}__stats--state
   margin-bottom: 17px
+
+.#{$b}__arrows
+  width: 16px
+  height: 48px
+  position: absolute
+  top: 22px
+  right: 0
+i.#{$b}__arrows-item
+  position: absolute
+  left: 0
+  display: block
+  width: 16px
+  height: 16px
+  cursor: pointer
+i.#{$b}__arrows-item--up
+  top: 0
+  background-image: image-url('/widgets/arrow-up.png')
+  background-image: inline-image('/widgets/arrow-up.png')
+i.#{$b}__arrows-item--down
+  bottom: 0
+  background-image: image-url('/widgets/arrow-down.png')
+  background-image: inline-image('/widgets/arrow-down.png')
+

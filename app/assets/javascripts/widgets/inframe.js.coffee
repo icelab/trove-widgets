@@ -20,37 +20,51 @@ jQuery.noConflict()
 
         initialize: () ->
 
-          items = $('@summary__item')
+          # Pick all newspaper items
+          @.items = $('@summary__item')
+          # Find max item height and set that height for all items
+          #setInterval $.proxy(@.setHeight, @), 500
+          @.setHeight()
+          # Start auto scrolling
+          @.timerId = setInterval $.proxy(@.autoScroll, @), 5000
+          # Attach event for manual scrolling
+          @.arrows = $('@summary__arrows').find('i')
+          @.arrows.on 'click', $.proxy((e) ->
+            # Stop auto scrolling
+            clearInterval(@.timerId)
+            # Continue scroll manually to selected item
+            current = $(e.currentTarget)
+            @.manualScroll(current.attr('data-target'))
+          , @)
+          # Stop auto scrolling after input focusing
+          $('input').on 'focus', $.proxy((e) ->
+            clearInterval(@.timerId)
+          , @)
 
-          setInterval (->
-            if items.filter("[data-height='auto']").length > 0
-              parent = items.first().parent()
-              heights = items.map(->
-                $(@).height()
-              ).get()
-              maxHeight = Math.max.apply(null, heights)
-              parentHeight = parent.height()
-              maxHeight = parentHeight if maxHeight < parentHeight
-              $.each items, () ->
-                $(@).css('height', maxHeight)
-                $(@).attr('data-height', 'manual')
-          ), 1000
+        setHeight: () ->
+          # Only for unprocessed items
+          while @.items.filter("[data-height='auto']").length > 0
+            parent = @.items.first().parent()
+            heights = @.items.map(->
+              $(@).height()
+            ).get()
+            maxHeight = Math.max.apply(null, heights)
+            parentHeight = parent.height()
+            maxHeight = parentHeight if maxHeight < parentHeight
+            $.each @.items, () ->
+              $(@).css('height', maxHeight)
+              $(@).attr('data-height', 'manual')
 
-          that = @
-          timerId = setInterval (->
-            that.scroll(items)
-          ), 5000
+        autoScroll: () ->
+          @.manualScroll(@.arrows.last().attr('data-target'))
 
-          $('input').focus ->
-            clearInterval(timerId)
-
-        scroll: (items) ->
-          current = items.filter("[data-type='active']")
-          next = (if current.next().length is 0 then items.first() else current.next())
-          current.attr('data-type', 'normal')
-          next.attr('data-type', 'active')
-          items.first().animate({'margin-top': -(current.index())*current.height()}, 500, 'linear')
-
+        manualScroll: (targetId) ->
+          currentTarget = @.items.filter("[data-target="+targetId+"]")
+          @.items.first().animate({'margin-top': -(currentTarget.index())*currentTarget.height()}, 500, 'linear')
+          prevTarget = (if currentTarget.prev().length is 0 then @.items.last() else currentTarget.prev()).data('target')
+          nextTarget = (if currentTarget.next().attr('role') != 'summary__item' then @.items.first() else currentTarget.next()).data('target')
+          @.arrows.filter("[data-direction='up']").attr('data-target', prevTarget)
+          @.arrows.filter("[data-direction='down']").attr('data-target', nextTarget)
 
     summary_multiple:
 
