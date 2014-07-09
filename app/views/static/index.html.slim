@@ -31,7 +31,7 @@
         .col-sm-8
           select name='ids' multiple='multiple' role='configurator__ids-select'
             - for title in @titles
-              option value="#{title.id}" #{title.name}
+              option value="#{title.id}" selected=('selected' if title.id.to_i == 35) #{title.name}
 
       .form-group
         label.col-sm-4.control-label Heading
