@@ -90,7 +90,10 @@ $ ->
       Backbone.Syphon.deserialize(@, @.model.toJSON())
 
     submit: ->
-      @.model.set(Backbone.Syphon.serialize(@))
+      fields = Backbone.Syphon.serialize(@)
+      _(['heading', 'credits']).each (name) ->
+        fields[name] = fields[name].replace(/'/g, '&apos;').replace(/"/g, '&quot;')
+      @.model.set(fields)
       return false
 
     selectorVisibility: ->
@@ -167,7 +170,6 @@ $ ->
       _(@.model.toJSON()).each (value, name) ->
         attributes += " data-" + name + "='" + value + "'" unless name == 'multiselect' || value == ''
       $('@script').html($('<div/>').text(@.render().$el.html().replace('div', 'div' + attributes)))
-      #hljs.initHighlightingOnLoad()
       $('@script').each (i, e) ->
         hljs.highlightBlock e
 
