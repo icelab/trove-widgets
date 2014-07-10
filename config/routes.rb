@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'static#index'
+  get 'examples', to: 'static#examples', as: :examples
 
   namespace :widgets do
     get 'preload', to: 'preload#index'
