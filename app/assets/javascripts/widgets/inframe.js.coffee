@@ -22,24 +22,25 @@ jQuery.noConflict()
 
           # Pick all newspaper items
           @.items = $('@summary__item')
-          # Find max item height and set that height for all items
-          #setInterval $.proxy(@.setHeight, @), 500
-          @.setHeight()
-          # Start auto scrolling
-          @.timerId = setInterval $.proxy(@.autoScroll, @), 5000
-          # Attach event for manual scrolling
-          @.arrows = $('@summary__arrows').find('i')
-          @.arrows.on 'click', $.proxy((e) ->
-            # Stop auto scrolling
-            clearInterval(@.timerId)
-            # Continue scroll manually to selected item
-            current = $(e.currentTarget)
-            @.manualScroll(current.attr('data-target'))
-          , @)
-          # Stop auto scrolling after input focusing
-          $('input').on 'focus', $.proxy((e) ->
-            clearInterval(@.timerId)
-          , @)
+          if @.items.length > 1
+            # Find max item height and set that height for all items
+            #setInterval $.proxy(@.setHeight, @), 500
+            @.setHeight()
+            # Start auto scrolling
+            @.timerId = setInterval $.proxy(@.autoScroll, @), 5000
+            # Attach event for manual scrolling
+            @.arrows = $('@summary__arrows').find('i')
+            @.arrows.on 'click', $.proxy((e) ->
+              # Stop auto scrolling
+              clearInterval(@.timerId)
+              # Continue scroll manually to selected item
+              current = $(e.currentTarget)
+              @.manualScroll(current.attr('data-target'))
+            , @)
+            # Stop auto scrolling after input focusing
+            $('input').on 'focus', $.proxy((e) ->
+              clearInterval(@.timerId)
+            , @)
 
         setHeight: () ->
           # Only for unprocessed items
@@ -100,7 +101,7 @@ jQuery.noConflict()
         type = $(el).data('type')
         select = '<select>'
         $.each years, (index, value) ->
-          select += '<option value=' + value.toString() + '>' + value.toString() + '</option>'
+          select += '<option value=' + value.toString() + '>' + value.toString() + '</option>' if value > 0
         select += '</select>'
         selectElement = $.parseHTML(select)
         $(selectElement).val($(el).text())
