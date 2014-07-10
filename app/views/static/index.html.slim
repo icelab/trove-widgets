@@ -87,3 +87,78 @@
     .highlight
       pre
         code role='iframe'
+
+hr
+.example
+
+  h2 Examples
+
+  p Trove widgets are available in the following types.
+
+  hr
+
+  .example__explanation
+
+    h4 A single newspaper
+
+    p To create this widget, select 'Any state', choose your newspaper and click 'Apply'.
+
+  .example__widget
+
+    script src="/assets/widgets/application.js" type="text/javascript"
+
+    div data-state='any' data-heading='Digitised on Trove' data-background='#FFFFFF' data-text='#777777' data-title='#333333' data-subtitle='#777777' data-border='#CDCDCD' data-width='300' data-root='/' data-type='summary' data-view='single' data-height='203' data-ids='35' role="trove-widget"
+
+  .example__explanation
+
+    h4 Multiple newspapers
+
+    p To show two or more newspapers, select 'Any state' then choose your newspapers.
+
+    p An optional 'credit line' can be added by your organisation.
+
+  .example__widget
+
+    script src="/assets/widgets/application.js" type="text/javascript"
+
+    div data-state='any' data-heading='Digitised on Trove' data-background='#FFFFFF' data-text='#777777' data-title='#333333' data-subtitle='#777777' data-border='#CDCDCD' data-width='300' data-root='/' data-type='summary' data-view='multiple' data-height='223' data-ids='34,18,10,35' data-credits='Funded by State Library' role="trove-widget"
+
+  .example__explanation
+
+    h4 State summary
+
+    p To create a state-based summary, select your state and click 'Apply'.
+
+    p Visitors will be able to search all newspapers for your chosen state.
+
+  .example__widget
+
+    script src="/assets/widgets/application.js" type="text/javascript"
+
+    div data-state='sa' data-heading='Digitised on Trove' data-background='#FFFFFF' data-text='#777777' data-title='#333333' data-subtitle='#777777' data-border='#CDCDCD' data-width='300' data-root='/' data-type='summary' data-view='state' data-height='185' data-ids='null' role="trove-widget"
+
+  .example__explanation
+
+    h4 State navigator
+
+    p To show a filterable list of all newspapers for a state, select 'Newspaper navigator', then choose your state and click 'Apply'.
+
+    p Visitors can search for a newspaper and narrow their search to particular dates.
+
+  .example__widget
+
+    script src="/assets/widgets/application.js" type="text/javascript"
+
+    div data-state='vic' data-heading='Digitised on Trove' data-background='#FFFFFF' data-text='#777777' data-title='#333333' data-subtitle='#777777' data-border='#CDCDCD' data-width='300' data-root='/' data-type='navigator' data-view='title' data-height='400' data-ids='null' role="trove-widget"
+
+  .example__explanation
+
+    h4 Customised appearance
+
+    p Change the colours and heading text of your widget by entering your own colour codes or by using the color pickers.
+
+  .example__widget
+
+    script src="assets/widgets/application.js" type="text/javascript"
+
+    div data-state='act' data-heading='Your own heading' data-background='#FFFFFF' data-text='#C0C0C0' data-title='#339966' data-subtitle='#777777' data-border='#C0C0C0' data-width='300' data-root='/' data-type='summary' data-view='state' data-height='185' data-ids='null' role="trove-widget"
