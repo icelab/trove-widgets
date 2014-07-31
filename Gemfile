@@ -23,6 +23,7 @@ gem 'unicorn'
 gem 'trove', git: 'https://github.com/icelab/trove'
 gem 'dalli'
 gem 'hashie'
+gem 'google-api-client'
 
 group :davelopment do
   gem 'spring'
