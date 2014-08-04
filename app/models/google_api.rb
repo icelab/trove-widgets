@@ -30,13 +30,19 @@ class GoogleApi
   end
 
   def pageviews
-    result = request({
-      'dimensions' => 'ga:pagePath, ga:pageTitle',
-      'metrics'    => 'ga:pageviews',
-      'sort'       => '-ga:pageviews',
-      'max-results' => 150
-    })
-    p result.inspect
+    request({
+      dimensions: 'ga:hostname, ga:pagePath, ga:pageTitle',
+      metrics:    'ga:pageviews, ga:uniquePageviews',
+      sort:       '-ga:pageviews'
+    }).data.rows
+  end
+
+  def countries
+    request({
+      dimensions: 'ga:country',
+      metrics:    'ga:sessions',
+      sort:       '-ga:sessions'
+    }).data.rows
   end
 
 end
