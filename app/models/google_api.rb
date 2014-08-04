@@ -17,7 +17,7 @@ class GoogleApi
     @api_method = @client.discovered_api('analytics','v3').data.ga.get
 
     @parameters = {
-      'ids'         => ENV['GA_API_PROFILE'],
+      'ids'         => "ga:#{ENV['GA_API_PROFILE']}",
       'start-date'  => (Date.today - 7.years).to_s,
       'end-date'    => Date.today.to_s,
       'max-results' => 50
@@ -34,6 +34,7 @@ class GoogleApi
       dimensions: 'ga:hostname, ga:pagePath, ga:pageTitle',
       metrics:    'ga:pageviews, ga:uniquePageviews',
       sort:       '-ga:pageviews',
+      filters:    'ga:pagePath!=/'
     }).data.rows
   end
 
