@@ -55,4 +55,13 @@ class GoogleApi
     }).data.rows
   end
 
+  def keywords
+    request({
+      dimensions: 'ga:keyword',
+      metrics:    'ga:sessions',
+      sort:       '-ga:sessions',
+      filters:    'ga:keyword!=(not set);ga:keyword!=(not provided)'
+    }).data.rows
+  end
+
 end
