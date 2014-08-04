@@ -65,4 +65,13 @@ class GoogleApi
     }).data.rows
   end
 
+  def page_stats(path)
+    request({
+      dimensions: 'ga:hostname, ga:pagePath',
+      metrics:    'ga:pageviews, ga:uniquePageviews, ga:sessions',
+      sort:       '-ga:pageviews',
+      filters:    'ga:pagePath==' + path
+    }).data.rows
+  end
+
 end
