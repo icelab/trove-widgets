@@ -33,7 +33,7 @@ class GoogleApi
     request({
       dimensions: 'ga:hostname, ga:pagePath, ga:pageTitle',
       metrics:    'ga:pageviews, ga:uniquePageviews',
-      sort:       '-ga:pageviews'
+      sort:       '-ga:pageviews',
     }).data.rows
   end
 
@@ -41,7 +41,17 @@ class GoogleApi
     request({
       dimensions: 'ga:country',
       metrics:    'ga:sessions',
-      sort:       '-ga:sessions'
+      sort:       '-ga:sessions',
+      filters:    'ga:country!=(not set)'
+    }).data.rows
+  end
+
+  def cities
+    request({
+      dimensions: 'ga:city',
+      metrics:    'ga:sessions',
+      sort:       '-ga:sessions',
+      filters:    'ga:city!=(not set)'
     }).data.rows
   end
 
