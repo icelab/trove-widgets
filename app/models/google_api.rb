@@ -30,12 +30,23 @@ class GoogleApi
   end
 
   def pageviews
-    request({
+    response = request({
       dimensions: 'ga:hostname, ga:pagePath, ga:pageTitle',
       metrics:    'ga:pageviews, ga:uniquePageviews',
       sort:       '-ga:pageviews',
       filters:    'ga:pagePath!=/'
-    }).data.rows
+    })
+    injector = response.data.rows.inject({}) do |memo, page|
+      memo[page[1]] = {
+        host: page[0],
+        url: "http://#{page[0]}#{page[1]}",
+        title: page[2],
+        views: page[3],
+        visitors: page[4]
+      }
+      memo
+    end
+    Hashie::Mash.new(injector).values
   end
 
   def countries

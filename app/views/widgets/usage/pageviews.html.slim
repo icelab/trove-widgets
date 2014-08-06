@@ -1,2 +1,9 @@
-- @pageviews.each do |page|
-  p= page[1]
+.navigator style="height:#{params[:height].to_i-"#{params[:credits].present? ? 94 : 74}".to_i}px;"
+
+  h1.navigator__title Most viewed pages
+
+  ul.navigator__list
+    - for page in @pageviews
+      li.navigator__list-item
+        strong.navigator__list-title= link_to page.title, page.url, target: :blank
+        p.navigator__list-stats #{human_counts('view', page.views)}, #{human_counts('visitor', page.visitors)}
