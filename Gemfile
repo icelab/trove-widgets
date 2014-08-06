@@ -24,6 +24,7 @@ gem 'trove', git: 'https://github.com/icelab/trove'
 gem 'dalli'
 gem 'hashie'
 gem 'google-api-client'
+gem 'bugsnag'
 
 group :davelopment do
   gem 'spring'
@@ -36,5 +37,4 @@ group :production do
   gem 'rails_12factor'
   gem 'non-stupid-digest-assets'
   gem 'memcachier'
-  gem 'bugsnag'
 end
