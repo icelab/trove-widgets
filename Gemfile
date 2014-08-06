@@ -24,6 +24,7 @@ gem 'trove', git: 'https://github.com/icelab/trove'
 gem 'dalli'
 gem 'hashie'
 gem 'google-api-client'
+gem 'bugsnag'
 
 group :davelopment do
   gem 'spring'
