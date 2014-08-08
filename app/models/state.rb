@@ -17,7 +17,7 @@ class State
   end
 
   def find_by_abbrev(abbrev)
-    items.detect{|state| state.abbrev == abbrev}
+    items.detect{|state| state.abbrev == abbrev}.merge(titles: Title.new.find_by_state(abbrev))
   end
 
 end
