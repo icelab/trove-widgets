@@ -11,7 +11,7 @@ class Title
   end
 
   def items(readonly=true)
-    @items ||= Hashie::Mash.new(store.transaction{store[:title]}.inject({}){|memo, item| memo[item[:id]] = item; memo}).values
+    Hashie::Mash.new(store.transaction{store[:title]}.inject({}){|memo, item| memo[item[:id]] = item; memo}).values
   end
 
   def sorted
@@ -29,6 +29,10 @@ class Title
     store.transaction do
       store[:title] = []
     end
+  end
+
+  def find_by_state(abbrev)
+    items.select{|title| title.abbrev == abbrev}
   end
 
   def self.sync
