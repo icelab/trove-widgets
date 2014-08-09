@@ -41,7 +41,16 @@ class Title
     State.new.items.each do |state|
       trove_api_titles = Trove::Client.new(key: ENV['TROVE_API_KEY']).titles_by_state(state.abbrev)
       trove_api_titles.newspaper.each do |newspaper|
-        titles.add({id: newspaper.id, name: newspaper.title, abbrev: state.abbrev, start_date: newspaper.startDate, end_date: newspaper.endDate})
+        titles.add({
+          id: newspaper.id,
+          abbrev: state.abbrev,
+          name: newspaper.title,
+          url: newspaper.troveUrl,
+          start_date: newspaper.startDate,
+          end_date: newspaper.endDate,
+          start_year: newspaper.startDate ? newspaper.startDate.to_date.strftime('%Y') : '0',
+          end_year: newspaper.endDate ? newspaper.endDate.to_date.strftime('%Y') : '0'
+        })
       end
     end
   end
