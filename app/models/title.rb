@@ -45,6 +45,7 @@ class Title
           id: newspaper.id,
           abbrev: state.abbrev,
           name: newspaper.title,
+          name_short: newspaper.title.split('(').first.strip,
           url: newspaper.troveUrl,
           start_date: newspaper.startDate,
           end_date: newspaper.endDate,
