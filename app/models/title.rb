@@ -31,8 +31,8 @@ class Title
     end
   end
 
-  def find_by_state(abbrev)
-    items.select{|title| title.abbrev == abbrev}
+  def find_by_state(state)
+    items.select{|title| title.abbrev == state}
   end
 
   def self.sync
