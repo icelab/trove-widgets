@@ -1,9 +1,9 @@
 .navigator style="height:#{params[:height].to_i-"#{params[:credits].present? ? 94 : 74}".to_i}px;"
 
-  h1.navigator__title Most viewed pages
+  h1.navigator__title Most popular titles of #{@state}
 
   ul.navigator__list
-    - for page in @pageviews
+    - for newspaper in @newspapers
       li.navigator__list-item
-        strong.navigator__list-title= link_to page.title, page.url, target: :blank
-        p.navigator__list-stats #{human_counts('view', page.views)}, #{human_counts('visitor', page.visitors)}
+        strong.navigator__list-title= link_to newspaper.name_short, newspaper.url, target: :blank
+        p.navigator__list-stats #{human_counts('pageview', newspaper.pageviews)}, #{human_counts('visitor', newspaper.visitors)}

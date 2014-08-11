@@ -29,51 +29,24 @@ class GoogleApi
     @client.execute(api_method: @api_method, parameters: @parameters.merge(options))
   end
 
-  def pageviews
+  def top_titles(limit)
     response = request({
-      dimensions: 'ga:hostname, ga:pagePath, ga:pageTitle',
-      metrics:    'ga:pageviews, ga:uniquePageviews',
+      dimensions: 'ga:customVarName1, ga:customVarValue1',
+      metrics:    'ga:pageviews, ga:uniquePageviews, ga:sessions',
       sort:       '-ga:pageviews',
-      filters:    'ga:pagePath!=/'
+      filters:    'ga:customVarName1==titleId',
+      'max-results' => limit
     })
-    injector = response.data.rows.inject({}) do |memo, page|
-      memo[page[1]] = {
-        host: page[0],
-        url: "http://#{page[0]}#{page[1]}",
-        title: page[2],
-        views: page[3],
-        visitors: page[4]
+    injector = response.data.rows.inject({}) do |memo, metric|
+      memo[metric[1]] = {
+        id: metric[1],
+        pageviews: metric[2],
+        visitors: metric[3],
+        sessions: metric[4]
       }
       memo
     end
     Hashie::Mash.new(injector).values
-  end
-
-  def countries
-    request({
-      dimensions: 'ga:country',
-      metrics:    'ga:sessions',
-      sort:       '-ga:sessions',
-      filters:    'ga:country!=(not set)'
-    }).data.rows
-  end
-
-  def cities
-    request({
-      dimensions: 'ga:city',
-      metrics:    'ga:sessions',
-      sort:       '-ga:sessions',
-      filters:    'ga:city!=(not set)'
-    }).data.rows
-  end
-
-  def keywords
-    request({
-      dimensions: 'ga:keyword',
-      metrics:    'ga:sessions',
-      sort:       '-ga:sessions',
-      filters:    'ga:keyword!=(not set);ga:keyword!=(not provided)'
-    }).data.rows
   end
 
   def page_stats(path)
