@@ -1,19 +1,18 @@
 set :application, 'trove-widgets'
 set :repository,  "https://github.com/icelab/#{application}.git"
 
-set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :scm, :git
 
-role :web, 'trovespace.webfactional.com'                          # Your HTTP server, Apache/etc
-role :app, 'trovespace.webfactional.com'                          # This may be the same as your `Web` server
+role :web, 'trovespace.webfactional.com'
+role :app, 'trovespace.webfactional.com'
 
 set :deploy_to, "/home/trovespace/webapps/widgets"
 set :default_stage, "production"
 set :default_environment, {
   'PATH' => "#{deploy_to}/bin:$PATH",
-  'GEM_HOME' => "#{deploy_to}/gems"
+  'GEM_HOME' => "#{deploy_to}/gems",
+  "RAILS_ENV" =>  "#{default_stage}"
 }
-
 
 set :user, 'trovespace'
 set :rails_env, 'production'
@@ -21,6 +20,19 @@ set :use_sudo, false
 default_run_options[:pty] = true
 
 namespace :deploy do
+
+  puts "===================================================\n"
+  puts "         (  )   (   )  )"
+  puts "      ) (   )  (  (         GO GRAB SOME COFFEE"
+  puts "      ( )  (    ) )\n"
+  puts "     <_____________> ___    CAPISTRANO IS ROCKING!"
+  puts "     |             |/ _ \\"
+  puts "     |               | | |"
+  puts "     |               |_| |"
+  puts "  ___|             |\\___/"
+  puts " /    \\___________/    \\"
+  puts " \\_____________________/ \n"
+  puts "==================================================="
 
   desc "Restart nginx"
   task :restart do
@@ -34,7 +46,7 @@ namespace :deploy do
 
   namespace :assets do
     desc "Run the precompile task remotely"
-    task :precompile, :roles => :web, :except => { :no_release => true } do
+    task :precompile, roles: :web, except: {no_release: true} do
       run "cd #{deploy_to}/current; bundle exec rake assets:precompile RAILS_ENV=#{default_stage}"
     end
   end
