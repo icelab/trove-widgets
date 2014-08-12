@@ -38,4 +38,5 @@ group :production do
   gem 'non-stupid-digest-assets'
   gem 'memcachier'
   gem 'therubyracer'
+  gem 'dotenv-deployment'
 end

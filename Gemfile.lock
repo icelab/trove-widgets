@@ -243,6 +243,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   compass-rails
   dalli
+  dotenv-deployment
   dotenv-rails
   execjs
   foreman

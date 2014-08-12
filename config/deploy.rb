@@ -18,6 +18,10 @@ set :user, 'trovespace'
 set :use_sudo, false
 default_run_options[:pty] = true
 
+set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
+set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
+
+
 namespace :deploy do
 
   puts "===================================================\n"
@@ -38,7 +42,7 @@ namespace :deploy do
   #  run "#{deploy_to}/bin/restart"
   #end
 
-  desc "Server restart."
+  desc "Server restart"
   task :restart do
     run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D; fi"
   end
@@ -63,7 +67,7 @@ namespace :deploy do
 
 end
 
-after "deploy", "deploy:bundle"
-after "deploy", "deploy:assets:precompile"
-after "deploy", "deploy:cleanup"
-after "deploy", "deploy:restart"
+after "deploy:update_code", "deploy:bundle"
+after "deploy:bundle", "deploy:restart"
+#after "deploy", "deploy:assets:precompile"
+#after "deploy", "deploy:cleanup"
