@@ -7,8 +7,8 @@ err_log    = "#{rails_root}/log/unicorn_error.log"
 old_pid    = pid_file + '.oldbin'
 
 
-worker_processes 5
-timeout 60
+worker_processes 2
+timeout 30
 preload_app true
 listen socket_file, :backlog => 1024
 pid pid_file
