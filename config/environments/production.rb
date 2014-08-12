@@ -81,6 +81,7 @@ Rails.application.configure do
 
   # Default cache store
   config.cache_store = :dalli_store, {expires_in: 1.day, compress: true}
-  config.action_controller.relative_url_root = ENV['RELATIVE_URL_ROOT']
+
+  config.asset_host = ENV['ASSET_HOST']
 
 end
