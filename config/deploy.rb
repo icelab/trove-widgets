@@ -1,3 +1,5 @@
+require 'dotenv/deployment/capistrano'
+
 set :application, 'trove-widgets'
 set :repository,  "https://github.com/icelab/#{application}.git"
 
