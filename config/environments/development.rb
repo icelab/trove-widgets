@@ -37,5 +37,6 @@ Rails.application.configure do
 
   config.assets.digest = true
   config.static_cache_control = "public, max-age=3600"
+  config.asset_host = "http://trovespace.webfactional.com/widgets/"
 
 end

@@ -15,7 +15,7 @@ set :default_environment, {
 }
 
 set :user, 'trovespace'
-set :rails_env, 'production'
+set :rails_env, "#{default_stage}"
 set :use_sudo, false
 default_run_options[:pty] = true
 
@@ -53,7 +53,7 @@ namespace :deploy do
 
 end
 
-#after "deploy", "deploy:bundle"
+after "deploy", "deploy:bundle"
 after "deploy", "deploy:assets:precompile"
 after "deploy", "deploy:cleanup"
 after "deploy", "deploy:restart"
