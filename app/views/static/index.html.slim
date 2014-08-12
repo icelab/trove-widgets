@@ -14,7 +14,7 @@
 
     h3 Configuration
 
-    form.form-horizontal role='configurator' data-root="#{root_url}"
+    form.form-horizontal role='configurator' data-root="#{root_url}#{ENV['RELATIVE_URL_ROOT']}"
 
       .form-group
         label.col-sm-4.control-label State
