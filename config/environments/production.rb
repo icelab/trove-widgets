@@ -82,4 +82,6 @@ Rails.application.configure do
   # Default cache store
   config.cache_store = :dalli_store, {expires_in: 1.day, compress: true}
 
+  config.action_controller.asset_host = "http://trovespace.webfactional.com/widgets/"
+
 end
