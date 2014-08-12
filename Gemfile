@@ -37,4 +37,5 @@ group :production do
   gem 'rails_12factor'
   gem 'non-stupid-digest-assets'
   gem 'memcachier'
+  gem 'therubyracer'
 end
