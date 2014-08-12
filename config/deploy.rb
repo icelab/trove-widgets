@@ -44,17 +44,6 @@ namespace :deploy do
   #  run "#{deploy_to}/bin/restart"
   #end
 
-  desc "Server restart"
-  task :restart do
-    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D; fi"
-  end
-  task :start do
-    run "bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D"
-  end
-  task :stop do
-    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
-  end
-
   desc "Bundle install gems"
   task :bundle do
     run "cd #{deploy_to}/current; bundle install --deployment"
@@ -67,9 +56,20 @@ namespace :deploy do
     end
   end
 
+  desc "Server restart"
+  task :restart do
+    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D; fi"
+  end
+  task :start do
+    run "bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D"
+  end
+  task :stop do
+    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
+  end
+
 end
 
-after "deploy:update_code", "deploy:bundle"
-after "deploy:bundle", "deploy:restart"
-#after "deploy", "deploy:assets:precompile"
-#after "deploy", "deploy:cleanup"
+after "deploy:create_symlink", "deploy:bundle"
+after "deploy:create_symlink", "deploy:assets:precompile"
+after "deploy:create_symlink", "deploy:restart"
+after "deploy:create_symlink", "deploy:cleanup"
