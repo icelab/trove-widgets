@@ -72,15 +72,9 @@ namespace :deploy do
     run "ln -s #{deploy_to}/shared/NLA-stats-87ada0746583.p12 #{deploy_to}/current/config/GA.p12"
   end
 
-  desc 'Memcached symlink'
-  task :link_memcache do
-    run "ln -s /home/trovespace/memcached.sock #{deploy_to}/current/memcached.sock"
-  end
-
 end
 
 after 'deploy:create_symlink', 'deploy:link_key'
-after 'deploy:create_symlink', 'deploy:link_memcache'
 after 'deploy:create_symlink', 'deploy:bundle'
 after 'deploy:create_symlink', 'deploy:assets:precompile'
 after 'deploy:create_symlink', 'deploy:restart'
