@@ -80,7 +80,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Default cache store
-  config.cache_store = :dalli_store, '/memcached.sock', {expires_in: 1.day, compress: true}
+  config.cache_store = :dalli_store, '/home/trovespace/memcached.sock', {expires_in: 1.day, compress: true}
 
   config.asset_host = ENV['ASSET_HOST']
 
