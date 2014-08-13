@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def data_params
-    params.except([:controller, :action]).merge({root: ENV['ASSET_HOST']})
+    params.except([:controller, :action]).merge({root: root_url})
   end
 
   def human_counts(word, count)

@@ -82,6 +82,4 @@ Rails.application.configure do
   # Default cache store
   config.cache_store = :dalli_store, '/home/trovespace/memcached.sock', {expires_in: 1.day, compress: true}
 
-  config.asset_host = ENV['ASSET_HOST']
-
 end

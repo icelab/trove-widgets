@@ -14,7 +14,7 @@ html lang='en'
     .container
       .page-header
         ul.nav.nav-pills.pull-right
-          li class="#{current_page?(root_path) ? 'active' : 'default'}"= link_to 'Home', root_path
+          li class="#{current_page?(root_path) ? 'active' : 'default'}"= link_to 'Home', root_url
           li class="#{current_page?(examples_path) ? 'active' : 'default'}"= link_to 'Examples', examples_url
         h1= link_to 'Trove widgets', root_path
 
