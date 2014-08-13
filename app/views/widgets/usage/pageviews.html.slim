@@ -1,6 +1,6 @@
 .navigator style="height:#{params[:height].to_i-"#{params[:credits].present? ? 94 : 74}".to_i}px;"
 
-  h1.navigator__title Most popular titles of #{@state}
+  h1.navigator__title Most popular titles from #{@state}
 
   ul.navigator__list
     - for newspaper in @newspapers
