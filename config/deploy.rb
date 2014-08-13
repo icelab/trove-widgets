@@ -8,8 +8,8 @@ set :scm, :git
 role :web, 'trovespace.webfactional.com'
 role :app, 'trovespace.webfactional.com'
 
-set :deploy_to, "/home/trovespace/webapps/widgets"
-set :rails_env, "production"
+set :deploy_to, '/home/trovespace/webapps/widgets'
+set :rails_env, 'production'
 set :default_environment, {
   'PATH' => "#{deploy_to}/bin:$PATH",
   'GEM_HOME' => "#{deploy_to}/gems",
@@ -26,37 +26,37 @@ set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 
 namespace :deploy do
 
-  puts "===================================================\n"
-  puts "         (  )   (   )  )"
-  puts "      ) (   )  (  (         GO GRAB SOME COFFEE"
-  puts "      ( )  (    ) )\n"
-  puts "     <_____________> ___    CAPISTRANO IS ROCKING!"
-  puts "     |             |/ _ \\"
-  puts "     |               | | |"
-  puts "     |               |_| |"
-  puts "  ___|             |\\___/"
-  puts " /    \\___________/    \\"
-  puts " \\_____________________/ \n"
-  puts "==================================================="
+  puts '===================================================\n'
+  puts '         (  )   (   )  )'
+  puts '      ) (   )  (  (         GO GRAB SOME COFFEE'
+  puts '      ( )  (    ) )\n'
+  puts '     <_____________> ___    CAPISTRANO IS ROCKING!'
+  puts '     |             |/ _ \\'
+  puts '     |               | | |'
+  puts '     |               |_| |'
+  puts '  ___|             |\\___/'
+  puts ' /    \\___________/    \\'
+  puts ' \\_____________________/ \n'
+  puts '==================================================='
 
   #desc "Restart nginx"
   #task :restart do
   #  run "#{deploy_to}/bin/restart"
   #end
 
-  desc "Bundle install gems"
+  desc 'Bundle install gems'
   task :bundle do
     run "cd #{deploy_to}/current; bundle install --deployment"
   end
 
   namespace :assets do
-    desc "Run the precompile task"
+    desc 'Run the precompile task'
     task :precompile, roles: :web, except: {no_release: true} do
       run "cd #{deploy_to}/current; bundle exec rake assets:precompile RAILS_ENV=#{rails_env}"
     end
   end
 
-  desc "Server restart"
+  desc 'Server restart'
   task :restart do
     run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D; fi"
   end
@@ -67,15 +67,20 @@ namespace :deploy do
     run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
   end
 
-  desc "GA key symlink"
+  desc 'GA key symlink'
   task :link_key do
     run "ln -s #{deploy_to}/shared/NLA-stats-87ada0746583.p12 #{deploy_to}/current/config/GA.p12"
   end
 
+  desc 'Memcached symlink'
+  task :link_key do
+    run "ln -s /home/trovespace/memcached.sock #{deploy_to}/current/memcached.sock"
+  end
+
 end
 
-after "deploy:create_symlink", "deploy:link_key"
-after "deploy:create_symlink", "deploy:bundle"
-after "deploy:create_symlink", "deploy:assets:precompile"
-after "deploy:create_symlink", "deploy:restart"
-after "deploy:create_symlink", "deploy:cleanup"
+after 'deploy:create_symlink', 'deploy:link_key'
+after 'deploy:create_symlink', 'deploy:bundle'
+after 'deploy:create_symlink', 'deploy:assets:precompile'
+after 'deploy:create_symlink', 'deploy:restart'
+after 'deploy:create_symlink', 'deploy:cleanup'
