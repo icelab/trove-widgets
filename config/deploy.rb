@@ -52,7 +52,7 @@ namespace :deploy do
   namespace :assets do
     desc "Run the precompile task"
     task :precompile, roles: :web, except: {no_release: true} do
-      run "ln -s #{deploy_to}/shared/NLA-stats-87ada0746583.p12 #{deploy_to}/current/config/GA.p12"
+      run "cd #{deploy_to}/current; bundle exec rake assets:precompile RAILS_ENV=#{rails_env}"
     end
   end
 
@@ -68,12 +68,13 @@ namespace :deploy do
   end
 
   desc "GA key symlink"
-  task :bundle do
-    run "cd #{deploy_to}/current/config/GA.p12.; bundle install --deployment"
+  task :link_key do
+    run "ln -s #{deploy_to}/shared/NLA-stats-87ada0746583.p12 #{deploy_to}/current/config/GA.p12"
   end
 
 end
 
+after "deploy:create_symlink", "deploy:link_key"
 after "deploy:create_symlink", "deploy:bundle"
 after "deploy:create_symlink", "deploy:assets:precompile"
 after "deploy:create_symlink", "deploy:restart"
