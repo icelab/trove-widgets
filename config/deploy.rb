@@ -50,9 +50,9 @@ namespace :deploy do
   end
 
   namespace :assets do
-    desc "Run the precompile task remotely"
+    desc "Run the precompile task"
     task :precompile, roles: :web, except: {no_release: true} do
-      run "cd #{deploy_to}/current; bundle exec rake assets:precompile RAILS_ENV=#{rails_env}"
+      run "ln -s #{deploy_to}/shared/NLA-stats-87ada0746583.p12 #{deploy_to}/current/config/GA.p12"
     end
   end
 
@@ -65,6 +65,11 @@ namespace :deploy do
   end
   task :stop do
     run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
+  end
+
+  desc "GA key symlink"
+  task :bundle do
+    run "cd #{deploy_to}/current/config/GA.p12.; bundle install --deployment"
   end
 
 end
