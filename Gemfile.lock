@@ -57,7 +57,7 @@ GEM
       railties
     bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
-    bugsnag (2.2.1)
+    bugsnag (2.2.2)
       httparty (>= 0.6, < 1.0)
       multi_json (~> 1.0)
     builder (3.2.2)
@@ -81,7 +81,7 @@ GEM
       sass (~> 3.2.19)
     compass-rails (2.0.0)
       compass (>= 0.12.2)
-    dalli (2.7.2)
+    dalli (1.1.5)
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
@@ -230,7 +230,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    uuidtools (2.1.4)
+    uuidtools (2.1.5)
 
 PLATFORMS
   ruby
@@ -242,7 +242,7 @@ DEPENDENCIES
   capistrano (= 2.15.5)
   coffee-rails (~> 4.0.0)
   compass-rails
-  dalli
+  dalli (~> 1.1)
   dotenv-deployment
   dotenv-rails
   execjs

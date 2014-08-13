@@ -21,7 +21,7 @@ gem 'json'
 gem 'dotenv-rails'
 gem 'unicorn'
 gem 'trove', git: 'https://github.com/icelab/trove'
-gem 'dalli'
+gem 'dalli', '~>1.1'
 gem 'hashie'
 gem 'google-api-client'
 gem 'bugsnag'
@@ -35,8 +35,8 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'non-stupid-digest-assets'
   gem 'memcachier'
+  gem 'non-stupid-digest-assets'
   gem 'therubyracer'
   gem 'dotenv-deployment'
 end
