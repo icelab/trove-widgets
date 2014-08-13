@@ -5,8 +5,8 @@ set :repository,  "https://github.com/icelab/#{application}.git"
 
 set :scm, :git
 
-role :web, 'trovespace.webfactional.com'
-role :app, 'trovespace.webfactional.com'
+role :web, 'widgets.trovespace.webfactional.com'
+role :app, 'widgets.trovespace.webfactional.com'
 
 set :deploy_to, '/home/trovespace/webapps/widgets'
 set :rails_env, 'production'
