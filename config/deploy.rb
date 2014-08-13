@@ -73,13 +73,14 @@ namespace :deploy do
   end
 
   desc 'Memcached symlink'
-  task :link_key do
+  task :link_memcache do
     run "ln -s /home/trovespace/memcached.sock #{deploy_to}/current/memcached.sock"
   end
 
 end
 
 after 'deploy:create_symlink', 'deploy:link_key'
+after 'deploy:create_symlink', 'deploy:link_memcache'
 after 'deploy:create_symlink', 'deploy:bundle'
 after 'deploy:create_symlink', 'deploy:assets:precompile'
 after 'deploy:create_symlink', 'deploy:restart'
