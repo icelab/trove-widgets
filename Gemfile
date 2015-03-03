@@ -1,4 +1,4 @@
-ruby '2.0.0'
+ruby '2.1.5'
 source 'https://rubygems.org'
 
 
@@ -26,7 +26,7 @@ gem 'hashie'
 gem 'google-api-client'
 gem 'bugsnag'
 
-group :davelopment do
+group :development do
   gem 'spring'
   gem 'foreman'
   gem 'capistrano', '2.15.5'
