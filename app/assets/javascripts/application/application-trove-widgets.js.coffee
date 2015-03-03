@@ -91,8 +91,12 @@ $ ->
 
     submit: ->
       fields = Backbone.Syphon.serialize(@)
+      # Convert special symbols to entities
       _(['heading', 'credits']).each (name) ->
         fields[name] = fields[name].replace(/'/g, '&apos;').replace(/"/g, '&quot;')
+      # Conver ids array to string
+      fields.ids = fields.ids.join(',')
+      # Remove multiselect field
       @.model.set(fields)
       return false
 
@@ -187,6 +191,8 @@ $ ->
       @.model.on('change', @.generate, @)
 
     render: ->
+      # Hide service multiselect attr
+      @.model.unset('multiselect')
       @.$el.html(JST['iframe'](model: @.model.toJSON(), params: $.param(@.model.omit('root'))))
       @
 
@@ -236,7 +242,7 @@ $ ->
   Trove.Models.Widget = Backbone.Model.extend()
   Trove.Store.widgetModel = new Trove.Models.Widget(
     state      : 'any'
-    ids        : '35'
+    ids        : 35
     heading    : 'Digitised on Trove'
     background : '#FFFFFF'
     text       : '#777777'
