@@ -1,14 +1,14 @@
 .navigator style="height:#{params[:height].to_i-"#{params[:credits].present? ? 94 : 74}".to_i}px;"
 
   h1.navigator__title #{@state.pluralize} newspapers
-  p.navigator__stats role='navigator__stats' <span role='navigator__counter'>#{@issuecount}</span> #{'title'.pluralize(@issuecount)} from <i title='Filter by start date' data-type='start'>#{@start_year}</i> to <i title='Filter by end date' data-type='end'>#{@start_year}</i>
+  p.navigator__stats role='navigator__stats' <span role='navigator__counter'>#{@issuecount}</span> #{'title'.pluralize(@issuecount)} from <i title='Filter by start date' data-type='start'>#{@start_year}</i> to <i title='Filter by end date' data-type='end'>#{@end_year}</i>
 
   .search.search--state
     input type='text' name='q' placeholder='Filter newspapers by title' class='search__field' role='navigator__search'
     button type='submit' class='search__button'
 
-  ul.navigator__list role='navigator__list' data-start="#{@start_year}" data-end="#{@start_year}"
+  ul.navigator__list role='navigator__list' data-start="#{@start_year}" data-end="#{@end_year}"
     - for newspaper in @newspapers
-      li.navigator__list-item data-start="#{newspaper.start_year}" data-end="#{newspaper.start_year}"
+      li.navigator__list-item data-start="#{newspaper.start_year}" data-end="#{newspaper.end_year}"
         strong.navigator__list-title= link_to newspaper.name_short, newspaper.url, target: :blank
-        p.navigator__list-stats From #{newspaper.start_year} to #{newspaper.start_year}
+        p.navigator__list-stats From #{newspaper.start_year} to #{newspaper.end_year}
