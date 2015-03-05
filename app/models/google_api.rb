@@ -4,6 +4,8 @@ class GoogleApi
 
   def initialize
 
+    check_env_keys
+
     @client  = Google::APIClient.new(application_name: ENV['GA_APP_NAME'], application_version: ENV['GA_APP_VERSION'])
 
     @client.authorization = Signet::OAuth2::Client.new(
@@ -56,6 +58,18 @@ class GoogleApi
       sort:       '-ga:pageviews',
       filters:    'ga:pagePath==' + path
     }).data.rows
+  end
+
+private
+
+  def env_keys
+    %w(GA_APP_NAME GA_APP_VERSION GA_API_EMAIL GA_API_KEYPATH GA_API_PROFILE)
+  end
+
+  def check_env_keys
+    env_keys.each do |item|
+      raise ArgumentError, "Value of ENV['#{item}'] must be specified. Please, check the README first." if ENV[item].nil? || ENV[item].empty?
+    end
   end
 
 end
