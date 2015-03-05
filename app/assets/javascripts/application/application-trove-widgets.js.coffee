@@ -132,7 +132,7 @@ $ ->
           view : 'title'
           height : 400
         else if type == 'usage'
-          view : 'pageviews'
+          view : 'state'
           height : 400
 
       options.height = options.height + 20 unless @.model.get('credits') == undefined || model.get('credits') == ''

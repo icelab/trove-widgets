@@ -2,14 +2,14 @@ class Widgets::UsageController < ApplicationController
 
   layout false
 
-  def pageviews
+  def state
     # Get state
-    state = State.new.find_by_abbrev(params[:state])
+    state  = State.new.find_by_abbrev(params[:state])
     @state = state.name
 
     begin
       # Receive all title ids from GA
-      top_titles = set_cache(['usage_pageviews', caching_params([])]) {GoogleApi.new.top_titles(Title.new.items.size)}
+      top_titles = set_cache(['usage_state', caching_params([])]) {GoogleApi.new.top_titles(Title.new.items.size)}
       # Merge state titles with GA stats
       @newspapers = top_titles.inject([]) do |memo, title|
         # If current title id and GA title id are equal

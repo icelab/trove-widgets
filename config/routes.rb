@@ -5,12 +5,12 @@ Rails.application.routes.draw do
 
   namespace :widgets do
     get 'preload', to: 'preload#index'
+    get 'summary/state', to: 'summary#state'
     get 'summary/single', to: 'summary#single'
     get 'summary/multiple', to: 'summary#multiple'
-    get 'summary/state', to: 'summary#state'
     get 'summary/statesearch', to: 'summary#statesearch'
     get 'navigator/title', to: 'navigator#title'
-    get 'usage/pageviews', to: 'usage#pageviews'
+    get 'usage/state', to: 'usage#state'
   end
 
 end
