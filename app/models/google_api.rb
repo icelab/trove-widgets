@@ -32,14 +32,31 @@ class GoogleApi
   end
 
   def top_titles(limit)
-    response = request({
+    @response = request({
       dimensions: 'ga:customVarName1, ga:customVarValue1',
       metrics:    'ga:pageviews, ga:uniquePageviews, ga:sessions',
       sort:       '-ga:pageviews',
       filters:    'ga:customVarName1==titleId',
       'max-results' => limit
     })
-    injector = response.data.rows.inject({}) do |memo, metric|
+    hashify
+  end
+
+  def title_stats(ids)
+    regex    = ids.map{|id| "^#{id}$"}.join("|")
+    @response = request({
+      dimensions: "ga:customVarName1, ga:customVarValue1",
+      metrics:    "ga:pageviews, ga:uniquePageviews, ga:sessions",
+      sort:       "-ga:pageviews",
+      filters:    "ga:customVarName1==titleId;ga:customVarValue1=~#{regex}"
+    })
+    hashify
+  end
+
+private
+
+  def hashify
+    injector = @response.data.rows.inject({}) do |memo, metric|
       memo[metric[1]] = {
         id: metric[1],
         pageviews: metric[2],
@@ -50,17 +67,6 @@ class GoogleApi
     end
     Hashie::Mash.new(injector).values
   end
-
-  def page_stats(path)
-    request({
-      dimensions: 'ga:hostname, ga:pagePath',
-      metrics:    'ga:pageviews, ga:uniquePageviews, ga:sessions',
-      sort:       '-ga:pageviews',
-      filters:    'ga:pagePath==' + path
-    }).data.rows
-  end
-
-private
 
   def env_keys
     %w(GA_APP_NAME GA_APP_VERSION GA_API_EMAIL GA_API_KEYPATH GA_API_PROFILE)
