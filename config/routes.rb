@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     get 'summary/statesearch', to: 'summary#statesearch'
     get 'navigator/title', to: 'navigator#title'
     get 'usage/state', to: 'usage#state'
+    get 'usage/single', to: 'usage#single'
+    get 'usage/multiple', to: 'usage#multiple'
   end
 
 end

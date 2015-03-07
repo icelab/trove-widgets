@@ -128,4 +128,9 @@ jQuery.noConflict()
             $(@).fadeOut()
         $('@navigator__counter').text(counter)
 
+    usage_multiple:
+
+      initialize: ->
+        TroveWidgets.inFrame.common.reshuffle.initialize();
+
 ) jQuery

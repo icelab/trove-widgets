@@ -17,7 +17,7 @@ html lang='en'
       body {
         color: #{params[:text]};
       }
-      p.summary__stats, .widget__credits, p.navigator__list-stats {
+      p.item__stats, .widget__credits, p.navigator__list-stats, p.usage__list-stats {
         color: #{params[:subtitle]};
       }
       ::-webkit-input-placeholder {
@@ -32,7 +32,7 @@ html lang='en'
       :-ms-input-placeholder {
         color: #{params[:subtitle]};
       }
-      h1.summary__title, h1.navigator__title, strong.navigator__list-title, strong.navigator__list-title a {
+      h1.item__title, h1.navigator__title, h1.usage__title, strong.navigator__list-title, strong.usage__list-title, strong.navigator__list-title a, strong.usage__list-title a {
         color: #{params[:title]}
       }
 

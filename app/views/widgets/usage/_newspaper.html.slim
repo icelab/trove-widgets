@@ -1,0 +1,4 @@
+.item class="item--#{modifier}" role='summary__item' data-type="#{newspaper == newspapers.first ? 'active' : 'normal'}" data-height='auto' data-target="#{newspaper.id}"
+
+  h1.item__title= link_to newspaper.name, newspaper.url, title: newspaper.name, target: :blank
+  p.item__years class="item__years--#{modifier}" #{human_counts('pageview', newspaper.pageviews)}, #{human_counts('visitor', newspaper.visitors)}

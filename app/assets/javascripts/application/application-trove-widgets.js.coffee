@@ -132,8 +132,12 @@ $ ->
           view : 'title'
           height : 400
         else if type == 'usage'
-          view : 'state'
-          height : 400
+          if ids != undefined && state == undefined
+            view: (if ids.toString().split(',').length > 1 then 'multiple' else 'single')
+            height : 160
+          else
+            view : 'state'
+            height : 400
 
       options.height = options.height + 20 unless @.model.get('credits') == undefined || model.get('credits') == ''
       model.set options

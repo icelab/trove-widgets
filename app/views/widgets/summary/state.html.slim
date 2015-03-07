@@ -1,6 +1,6 @@
 .summary style="height:#{params[:height].to_i-74}px;"
 
-  h1.summary__title #{@state.pluralize} newspapers
-  p.summary__stats.summary__stats--state #{human_counts('title', @issuecount)} from #{@start_date} to #{@end_date}
+  h1.item__title #{@state.pluralize} newspapers
+  p.item__stats.item__stats--state #{human_counts('title', @issuecount)} from #{@start_date} to #{@end_date}
 
   .search.search= render 'form', placeholder: "Search #{@state.pluralize} newspapers", hidden_name: 'l-state', hidden_value: @state

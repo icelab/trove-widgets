@@ -1,10 +1,10 @@
-.summary__item class="summary__item--#{modifier}" role='summary__item' data-type="#{newspaper == newspapers.first ? 'active' : 'normal'}" data-height='auto' data-target="#{newspaper.id}"
+.item class="item--#{modifier}" role='summary__item' data-type="#{newspaper == newspapers.first ? 'active' : 'normal'}" data-height='auto' data-target="#{newspaper.id}"
 
-  h1.summary__title= link_to newspaper.title, newspaper.url, title: newspaper.title, target: :blank
+  h1.item__title= link_to newspaper.title, newspaper.url, title: newspaper.title, target: :blank
 
-  p.summary__years class="summary__years--#{modifier}" #{human_counts('issue', newspaper.issuecount)} from #{newspaper.start_date} to #{newspaper.end_date}
+  p.item__years class="item__years--#{modifier}" #{human_counts('issue', newspaper.issuecount)} from #{newspaper.start_date} to #{newspaper.end_date}
 
   - unless modifier == 'statesearch'
     .search.search--summary= render 'form', placeholder: 'Search this newspaper', hidden_name: 'l-advtitle', hidden_value: newspaper.id
 
-  p.summary__stats #{human_counts('article', newspaper.articles_count)}, #{human_counts('comment', newspaper.comments_count)}, #{human_counts('tag', newspaper.tags_count)}
+  p.item__stats #{human_counts('article', newspaper.articles_count)}, #{human_counts('comment', newspaper.comments_count)}, #{human_counts('tag', newspaper.tags_count)}

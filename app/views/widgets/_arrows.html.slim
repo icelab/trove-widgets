@@ -1,0 +1,4 @@
+- if newspapers.size > 1
+  .arrows class="arrows--#{modifier}" role='summary__arrows'
+    i.arrows__item.arrows__item--up title='Scroll up' data-direction='up' data-target="#{newspapers.last.id}"
+    i.arrows__item.arrows__item--down title='Scroll down' data-direction='down' data-target="#{newspapers[1].id}"

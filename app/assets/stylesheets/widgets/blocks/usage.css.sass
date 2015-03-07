@@ -1,0 +1,38 @@
+$b: 'usage'
+
+.#{$b}
+  overflow-y: scroll
+  position: relative
+.#{$b}--single, .#{$b}--multiple
+  overflow: hidden
+
+h1.#{$b}__title
+  +title($font-size--big, bold)
+  line-height: 21px
+  margin-bottom: 5px
+
+p.#{$b}__stats
+  margin-bottom: 17px
+  line-height: 17px
+  font-size: $font-size--less
+
+  i
+    cursor: pointer
+    border-bottom-style: dotted
+    border-bottom-width: 1px
+  select
+    margin-top: -5px
+    margin-bottom: -1px
+
+li.#{$b}__list-item
+  margin-bottom: 12px
+
+strong.#{$b}__list-title
+  font-size: $font-size--normal
+  display: block
+  margin-bottom: 3px
+  line-height: 18px
+
+p.#{$b}__list-stats
+  font-size: $font-size--less
+

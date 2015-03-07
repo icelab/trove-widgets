@@ -1,0 +1,33 @@
+$b: 'arrows'
+
+.#{$b}
+  width: 16px
+  height: 48px
+  position: absolute
+
+
+.#{$b}--summary
+  top: 22px
+  right: 0
+
+.#{$b}--usage
+  position: absolute
+  top: 12px
+  right: 0
+
+i.#{$b}__item
+  position: absolute
+  left: 0
+  display: block
+  width: 16px
+  height: 16px
+  cursor: pointer
+i.#{$b}__item--up
+  top: 0
+  background-image: image-url('/widgets/arrow-up.png')
+  background-image: inline-image('/widgets/arrow-up.png')
+i.#{$b}__item--down
+  bottom: 0
+  background-image: image-url('/widgets/arrow-down.png')
+  background-image: inline-image('/widgets/arrow-down.png')
+
