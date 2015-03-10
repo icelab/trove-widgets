@@ -4,6 +4,6 @@
 
     = render 'newspaper', newspaper: newspaper, newspapers: @newspapers, modifier: 'statesearch'
 
-  = render 'widgets/arrows', newspapers: @newspapers
+  = render 'widgets/arrows', newspapers: @newspapers, modifier: 'summary'
 
 .search= render 'form', placeholder: "Search #{@state.pluralize} newspapers", hidden_name: 'l-state', hidden_value: @state
