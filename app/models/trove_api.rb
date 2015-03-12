@@ -6,6 +6,7 @@ class TroveApi
 
   def single_include_years(id)
     titles = []
+    id = id.join(",") if id.kind_of?(Array)
     response = @client.title_include_years(id)
     response = data_comb(response)
     response = combine_issues(response)
@@ -14,6 +15,7 @@ class TroveApi
   end
 
   def multiple_include_years(ids)
+    ids = ids.join(",") if ids.kind_of?(Array)
     titles = []
     ids.split(',').each do |id|
       response = @client.title_include_years(id)
